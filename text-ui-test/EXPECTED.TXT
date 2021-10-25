@@ -12,7 +12,6 @@
      | content: set the content
      | new: start a new word game
      | time: start a new timer game
-     | error: start a new error game
      | bye: exit typist
      | ===========================================================
 ===========================================================

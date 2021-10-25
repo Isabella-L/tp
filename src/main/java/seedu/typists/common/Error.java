@@ -1,5 +1,7 @@
 package seedu.typists.common;
 
+import java.util.ArrayList;
+
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
 
@@ -23,22 +25,22 @@ public class Error {
         return (double) wordCharacterDifference(word, typed) / word.length();
     }
 
-    public int sentenceLengthDifference(String[] content, String[] typed) {
-        return abs(content.length - typed.length);
+    public int sentenceLengthDifference(ArrayList<String> content, ArrayList<String> typed) {
+        return abs(content.size() - typed.size());
     }
 
-    public double sentenceErrorRate(String[] content, String[] typed) {
+    public double sentenceErrorRate(ArrayList<String> content, ArrayList<String> typed) {
         double temp = 0.0;
-        for (int i = 0; i < min(content.length, typed.length); i++) {
-            temp += wordErrorRate(content[i], typed[i]);
+        for (int i = 0; i < min(content.size(), typed.size()); i++) {
+            temp += wordErrorRate(content.get(i), typed.get(i));
         }
-        return temp / (double) min(content.length, typed.length);
+        return temp / (double) min(content.size(), typed.size());
     }
 
-    public int wrongWordCount(String[] content, String[] typed) {
+    public int wrongWordCount(ArrayList<String> content, ArrayList<String> typed) {
         int temp = 0;
-        for (int i = 0; i < min(content.length, typed.length); i++) {
-            temp += (content[0].equals(content[1]) ? 1 : 0);
+        for (int i = 0; i < min(content.size(), typed.size()); i++) {
+            temp += (content.get(i).equals(typed.get(i)) ? 0 : 1);
         }
         return temp;
     }

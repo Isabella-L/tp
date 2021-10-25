@@ -16,6 +16,7 @@ public class WikiImport {
         if (temp.length() < 1) {
             throw new InvalidArticleException();
         }
+        assert temp.length() > 1;
         return temp;
     }
 }

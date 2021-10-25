@@ -22,19 +22,19 @@ public class Content {
 
     public void setContent() {
         ui.printLetter();
-        ui.showText("Content selection (input 0 to go back):\n"
-                + "1. Opening of famous books\n"
-                + "2. Wikipedia article\n"
-                + "3. Random sentence of custom length"
-        );
+        ui.printLine("Content selection (input 0 to go back):");
+        ui.printLine("1. Opening of famous books");
+        ui.printLine("2. Wikipedia article");
+        ui.printLine("3. Random sentence of custom length");
+
         Scanner in = new Scanner(System.in);
         int command = -1;
         do {
-            ui.showText("Enter your selection: ");
+            ui.printLine("Enter your selection: ");
             try {
                 command = in.nextInt();
             } catch (InputMismatchException e) {
-                ui.showText("Invalid selection.");
+                ui.printLine("Invalid selection.");
                 in.nextLine();
             }
         } while (command < 0 || command > 3);
@@ -58,11 +58,11 @@ public class Content {
         ui.printBookSelection();
         int selection = -1;
         do {
-            ui.showText("Enter your selection:");
+            ui.printLine("Enter your selection:");
             try {
                 selection = in.nextInt();
             } catch (InputMismatchException e) {
-                ui.showText("Not an integer.");
+                ui.printLine("Not an integer.");
                 in.nextLine();
             }
         } while (selection < 0 || selection > 15);
@@ -70,7 +70,8 @@ public class Content {
             setContent();
         } else {
             this.content = Books.getBook(selection - 1);
-            ui.showText("Content set");
+            assert this.content.length() > 0;
+            ui.printLine("Content set");
         }
     }
 
@@ -80,7 +81,7 @@ public class Content {
         String title;
         boolean articleNotFound = true;
         do {
-            ui.showText("Enter the article name (input 0 to go back):");
+            ui.printLine("Enter the article name (input 0 to go back):");
             title = in.nextLine();
             if (title.equals("0")) {
                 articleNotFound = false;
@@ -90,9 +91,10 @@ public class Content {
                     String temp = wi.getArticle(title);
                     articleNotFound = false;
                     this.content = temp;
-                    ui.showText("Content set");
+                    assert this.content.length() > 0;
+                    ui.printLine("Content set");
                 } catch (InvalidArticleException e) {
-                    ui.showText(e.getMessage());
+                    ui.printLine(e.getMessage());
                 }
             }
         } while (articleNotFound);
@@ -103,15 +105,15 @@ public class Content {
         RandomGenerator rg = new RandomGenerator();
         int length = -1;
         do {
-            ui.showText("Enter the word count (between 1 - 100, input 0 to go back):");
+            ui.printLine("Enter the word count (between 5 - 100, input 0 to go back):");
             try {
                 length = in.nextInt();
             } catch (InputMismatchException e) {
-                ui.showText("Invalid selection.");
+                ui.printLine("Invalid selection.");
                 in.nextLine();
             }
         } while (length < 0 || length > 100);
-        if (length == 0) {
+        if (length < 5) {
             setContent();
         } else {
             String s = "";
@@ -120,7 +122,8 @@ public class Content {
                 s += (rg.randomString(r.nextInt(10) + 5) + " ");
             }
             this.content = s;
-            ui.showText("Content set " + this.content);
+            assert this.content.length() > 0;
+            ui.printLine("Content set");
         }
     }
 }

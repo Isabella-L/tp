@@ -19,7 +19,7 @@
 Description of feature  
 Format: {format of command}
 * Explanation 1 of format
-* Explanation 2 of format  
+* Explanation 2 of format
 <!-- -->
 Examples
 * command example 1

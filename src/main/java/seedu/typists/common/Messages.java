@@ -57,7 +57,6 @@ public class Messages {
             + "content: set the content\n"
             + "new: start a new word game\n"
             + "time: start a new timer game\n"
-            + "error: start a new error game\n"
             + "bye: exit typist";
 
     //This sample text is gotten from https://www.lipsum.com/
