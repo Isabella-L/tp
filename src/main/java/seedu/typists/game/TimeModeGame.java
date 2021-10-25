@@ -1,30 +1,30 @@
 package seedu.typists.game;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import seedu.typists.ui.TextUi;
-import static seedu.typists.common.Utils.getWordLine;
+
+import static seedu.typists.common.Utils.getWordLineFromStringArray;
+import static seedu.typists.common.Utils.getWordLines;
 
 public class TimeModeGame extends Game {
     private static final Logger logger = Logger.getLogger("Foo");
-    private final TextUi ui;
 
     protected final ArrayList<String[]> wordLines;
+    public ArrayList<String[]> userLines;
 
-    protected ArrayList<String> inputLines;
     protected int gameTime;
     protected double realGameTime;
 
     public TimeModeGame(String targetWordSet, int wordsPerLine) {
+        super();
         assert targetWordSet != null : "text passed into Time Game should not be null.";
-        this.ui = new TextUi();
-        this.inputLines = new ArrayList<>();
-        this.wordLines = getWordLine(targetWordSet, wordsPerLine);
+        this.wordLines = getWordLines(targetWordSet, wordsPerLine);
+        this.userLines = new ArrayList<>();
         this.gameTime = getGameTime();
-        startGame();
     }
 
     public boolean readyToStartTimer() {
@@ -48,8 +48,9 @@ public class TimeModeGame extends Game {
         }
     }
 
-    public void startGame() {
+    public void runGame() {
         Scanner in = new Scanner(System.in);
+        List<String> inputs = new ArrayList<>();
 
         if (readyToStartTimer()) {
             int i = 0;
@@ -62,13 +63,22 @@ public class TimeModeGame extends Game {
                     timeOver = true;
                     realGameTime = (double) currTime / 1000;
                 } else {
-                    ui.printLine(wordLines.get(i));
-                    String userInput = in.nextLine();
-                    inputLines.add(userInput);
+                    try {
+                        ui.printLine(wordLines.get(i));
+                    } catch (IndexOutOfBoundsException e) {
+                        logger.log(Level.WARNING, "no more content.");
+                    }
+                    inputs.add(in.nextLine());
                     i++;
                 }
             }
-            System.out.println("Game Finished.");
+            updateUserLines(inputs);
+            ui.printScreen("Game Finished.");
         }
     }
+
+    public void updateUserLines(List<String> stringArray) {
+        userLines = getWordLineFromStringArray(stringArray);
+    }
 }
+

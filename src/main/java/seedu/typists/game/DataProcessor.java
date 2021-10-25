@@ -17,7 +17,7 @@ public class DataProcessor {
 
     public DataProcessor(TimeModeGame tg) {
         this.checkerWordLines = tg.wordLines;
-        this.userWordLines = getWordLineFromStringArray(tg.inputLines);
+        this.userWordLines = tg.userLines;
         this.totalTime = tg.realGameTime;
         this.errorWords = getErrorWords();
     }

@@ -8,7 +8,6 @@ import java.util.Scanner;
 import static seedu.typists.parser.StringParser.splitString;
 
 public class WordLimitGame extends Game {
-    private final TextUi ui;
 
     private ArrayList<String> eachWord;
     protected int wordLimit;
@@ -16,13 +15,27 @@ public class WordLimitGame extends Game {
     private final int numberOfWordsDisplayed;
     private final String content1;
 
-    public WordLimitGame(String targetWordSet) {
+
+    public WordLimitGame(String targetWordSet, int wordsPerLine) {
+        super();
         this.eachWord = new ArrayList<>(100);
         this.gameIndex = 0;
-        this.numberOfWordsDisplayed = 5;
-        this.ui = new TextUi();
+        this.numberOfWordsDisplayed = wordsPerLine;
         this.content1 = targetWordSet;
         this.wordLimit = getWordLimit();
+    }
+
+    @Override
+    public void runGame() {
+        try {
+            game();
+        } catch (InvalidStringInputException e) {
+            e.printStackTrace();
+            //needs update
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            //needs update
+        }
     }
 
     public int getTotalSentence() {
@@ -42,11 +55,11 @@ public class WordLimitGame extends Game {
     }
 
     public void trimContent(int wordLimit) throws InvalidStringInputException {
-        eachWord = splitString(content1," ");
-        eachWord = new ArrayList<String>(eachWord.subList(0, wordLimit));
+        eachWord = splitString(content1, " ");
+        eachWord = new ArrayList<>(eachWord.subList(0, wordLimit));
     }
 
-    public void beginNewGame() throws InvalidStringInputException, InterruptedException {
+    public void game() throws InterruptedException, InvalidStringInputException {
         trimContent(wordLimit);
         boolean isExit = false;
         int totalError = 0;
@@ -80,7 +93,12 @@ public class WordLimitGame extends Game {
             }
 
             WordLimitDataProcessor recordError =  new WordLimitDataProcessor(fullCommand, temp);
-            totalError += recordError.getError();
+            try {
+                totalError += recordError.getError();
+            } catch (InvalidStringInputException e) {
+                e.printStackTrace();
+                //do something
+            }
             //isExit = recordError.getIsExit();
             ui.printGameMode1Progress(gameIndex,getTotalSentence());
 

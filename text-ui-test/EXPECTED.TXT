@@ -10,9 +10,8 @@
      | Brought to you by -- AY2122S1-CS2113-T13-4.
      | Manual:
      | content: set the content
-     | new: start a new word game
+     | word: start a new word game
      | time: start a new timer game
      | bye: exit typist
      | ===========================================================
-===========================================================
-Bye. Hope to see you again soon!
+     | Bye. Hope to see you again soon!

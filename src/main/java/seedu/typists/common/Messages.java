@@ -55,7 +55,7 @@ public class Messages {
     public static final String MESSAGE_ACKNOWLEDGE = "Brought to you by -- AY2122S1-CS2113-T13-4.";
     public static final String MESSAGE_HELP = "Manual:\n"
             + "content: set the content\n"
-            + "new: start a new word game\n"
+            + "word: start a new word game\n"
             + "time: start a new timer game\n"
             + "bye: exit typist";
 

@@ -2,7 +2,7 @@ package seedu;
 
 import org.junit.jupiter.api.Test;
 
-import static seedu.typists.common.Utils.getWordLine;
+import static seedu.typists.common.Utils.getWordLines;
 import static seedu.typists.common.Utils.splitStringIntoWordList;
 
 import java.util.ArrayList;
