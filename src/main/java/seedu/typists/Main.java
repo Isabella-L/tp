@@ -1,12 +1,14 @@
 package seedu.typists;
 
 import seedu.typists.content.Content;
-import seedu.typists.parser.Command;
-import seedu.typists.parser.CommandFactory;
+import seedu.typists.command.Command;
+import seedu.typists.command.CommandFactory;
 import seedu.typists.ui.TextUi;
 
 import seedu.typists.storage.StorageFile;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -39,12 +41,14 @@ public class Main {
     public void runCommandLoop() {
         CommandFactory cmdFactory = new CommandFactory();
         String command;
+        ArrayList<String> args;
         do {
             String[] input = read().split(" ");
             command = input[0];
+            args = new ArrayList<String>(Arrays.asList(Arrays.copyOfRange(input,1,input.length)));
             Command c = cmdFactory.getCommand(input[0]);
             if (c != null) {
-                c.run();
+                c.run(args);
             }
         } while (!command.equals("bye"));
     }

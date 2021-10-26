@@ -2,6 +2,7 @@ package seedu.typists.game;
 
 import seedu.typists.exception.InvalidStringInputException;
 import seedu.typists.ui.TextUi;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -92,7 +93,7 @@ public class WordLimitGame extends Game {
                 break;
             }
 
-            WordLimitDataProcessor recordError =  new WordLimitDataProcessor(fullCommand, temp);
+            WordLimitDataProcessor recordError = new WordLimitDataProcessor(fullCommand, temp);
             try {
                 totalError += recordError.getError();
             } catch (InvalidStringInputException e) {
@@ -100,13 +101,13 @@ public class WordLimitGame extends Game {
                 //do something
             }
             //isExit = recordError.getIsExit();
-            ui.printGameMode1Progress(gameIndex,getTotalSentence());
+            ui.printGameMode1Progress(gameIndex, getTotalSentence());
 
             if (gameIndex >= getTotalSentence()) {
                 ui.showAnimatedError(
-                    splitString(actualWord.trim()," "),
-                    splitString(inputWord.trim()," "),
-                    getTotalSentence()
+                        splitString(actualWord.trim(), " "),
+                        splitString(inputWord.trim(), " "),
+                        getTotalSentence()
                 );
                 break;
             }

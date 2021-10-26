@@ -13,8 +13,9 @@ public class WordLimitDataProcessor {
 
     /**
      * Ture if the 2 inputs are different.
+     *
      * @param input one of inputs
-     * @param text another input
+     * @param text  another input
      */
     public WordLimitDataProcessor(String input, String text) {
         this.userInput = input;
@@ -24,6 +25,7 @@ public class WordLimitDataProcessor {
 
     /**
      * Get exit.
+     *
      * @return obtain the Exit status
      */
     public Boolean getIsExit() {
@@ -31,8 +33,8 @@ public class WordLimitDataProcessor {
     }
 
     public int getError() throws InvalidStringInputException {
-        ArrayList<String> userInput0 = splitString(userInput," ");
-        ArrayList<String> contentWords0 = splitString(contentWords," ");
+        ArrayList<String> userInput0 = splitString(userInput, " ");
+        ArrayList<String> contentWords0 = splitString(contentWords, " ");
         ArrayList<String> list3 = new ArrayList<String>();
 
         for (int i = 0; i < contentWords0.size(); i++) {

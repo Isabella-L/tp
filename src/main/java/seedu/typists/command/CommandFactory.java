@@ -1,4 +1,4 @@
-package seedu.typists.parser;
+package seedu.typists.command;
 
 import seedu.typists.ui.TextUi;
 

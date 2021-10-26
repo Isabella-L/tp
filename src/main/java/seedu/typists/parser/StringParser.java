@@ -10,8 +10,8 @@ public class StringParser {
     /**
      * Splits the string based on the separator provided as parameter.
      *
-     * @param s the string to be split
-     * @param separator    a string representing the separator that you want to split the string on
+     * @param s         the string to be split
+     * @param separator a string representing the separator that you want to split the string on
      * @return ArrayList of strings
      */
     public static ArrayList<String> splitString(String s, String separator) throws InvalidStringInputException {

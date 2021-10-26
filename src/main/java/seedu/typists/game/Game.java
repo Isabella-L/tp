@@ -1,6 +1,10 @@
 package seedu.typists.game;
 
+import seedu.typists.ui.SummaryUi;
 import seedu.typists.ui.TextUi;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Game {
     protected final TextUi ui;
@@ -18,4 +22,17 @@ public abstract class Game {
     }
 
     public abstract void runGame();
+
+    public void handleSummary(
+            ArrayList<String[]> expectedInput, ArrayList<String[]> actualInput, double timeElapsed, String gameMode
+    ) {
+        HashMap<String, Object> summary = SummaryManager.generateSummary(
+                expectedInput, actualInput, timeElapsed, gameMode
+        );
+        SummaryUi.displaySummary(summary);
+    }
+
+    public void handleStorage() {
+
+    }
 }

@@ -1,6 +1,7 @@
 package seedu.typists.ui;
 
 import java.io.IOException;
+
 import seedu.typists.common.Error;
 import seedu.typists.content.Animation;
 
@@ -26,12 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Logger;
-import java.util.logging.LogManager;
-import java.util.logging.Level;
-import java.util.logging.SimpleFormatter;
-import java.util.logging.FileHandler;
-import java.util.logging.ConsoleHandler;
+
 
 /**
  * Text UI of the application.
@@ -42,7 +38,7 @@ public class TextUi {
     private static final String DIVIDER = "===========================================================";
     private static final String LINE_PREFIX = "     | ";
     private static final String LS = lineSeparator();
-    private static final Logger LOGGER = Logger.getLogger(TextUi.class.getName());
+
 
     //get current timestamp
     //unused because it interferes with the EXPECTED.TXT in runtest
@@ -195,7 +191,7 @@ public class TextUi {
     }
 
 
-    public void showSummary(int errorWordCount, double errorPercentage, List<String> errorWords, double wpm,
+    /*public void showSummary(int errorWordCount, double errorPercentage, List<String> errorWords, double wpm,
                             int totalWordTyped, double gameTime) {
         assert errorWordCount >= 0;
         assert errorPercentage >= 0;
@@ -210,10 +206,10 @@ public class TextUi {
         printErrorWords(errorWords);
         out.print("WPM: " + String.format("%.2f", wpm) + '\n');
         out.print("Total Time taken for the game: " + String.format("%.2f", gameTime) + " seconds\n");
-    }
+    }*/
 
     public void showAnimatedSummary(int errorWordCount, double errorPercentage, double wpm,
-                            int totalWordTyped, double gameTime) throws InterruptedException {
+                                    int totalWordTyped, double gameTime) throws InterruptedException {
         out.print(SUMMARY + '\n');
         viewAnimateRight("Wrong Words: " + errorWordCount + "/" + totalWordTyped);
         viewAnimateRight("Error Percentage: " + String.format("%.2f", errorPercentage));
@@ -221,44 +217,5 @@ public class TextUi {
         viewAnimateRight("Total Time taken for the game: " + String.format("%.2f", gameTime) + " seconds");
     }
 
-    void printErrorWords(List<String> errorWords) {
-        setUpLog();
-        if (errorWords == null) {
-            out.print("No words typed wrongly.\n");
-            return;
-        }
-        for (int i = 0; i < errorWords.size(); i++) {
-            assert errorWords != null;
-            if (i != 0 && i % 8 == 0) {
-                out.print("\n");
-            }
-            out.print(errorWords.get(i));
-            if (i != (errorWords.size() - 1)) {
-                out.print("|");
-            }
-        }
-        if ((errorWords.size() - 1) % 8 != 0) {
-            out.print("\n");
-        }
-    }
 
-    void setUpLog() {
-        LogManager.getLogManager().reset();
-        LOGGER.setLevel(Level.ALL);
-
-        ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.SEVERE);
-        LOGGER.addHandler(ch);
-
-        try {
-            FileHandler fh = new FileHandler(TextUi.class.getName() + ".log");
-            fh.setFormatter(new SimpleFormatter());
-            fh.setLevel(Level.FINE);
-            LOGGER.addHandler(fh);
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "File logger failed to set up\n", e);
-        }
-
-        LOGGER.info("Set up log in TextUi");
-    }
 }

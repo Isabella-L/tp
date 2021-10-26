@@ -1,14 +1,16 @@
-package seedu.typists.parser;
+package seedu.typists.command;
 
-import seedu.typists.game.Game;
+import seedu.typists.command.Command;
 import seedu.typists.game.WordLimitGame;
+
+import java.util.ArrayList;
 
 import static seedu.typists.Main.content;
 import static seedu.typists.Main.uiBot;
 
 public class WordGameCommand implements Command {
     @Override
-    public void run() {
+    public void run(ArrayList<String> args) {
         startWordLimitGame();
     }
 
