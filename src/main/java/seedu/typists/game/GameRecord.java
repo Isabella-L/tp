@@ -1,5 +1,6 @@
 package seedu.typists.game;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GameRecord {
@@ -34,5 +35,19 @@ public class GameRecord {
         return gameMode;
     }
 
-
+    public String getStringFormat() {
+        String separator = "|";
+        String formatted = gameMode
+                + separator
+                + timeElapsed
+                + separator
+                + errorWordCount
+                + separator
+                + correctWordCount
+                + separator
+                + totalWordCount
+                + separator
+                + errorWords.toString();
+        return formatted;
+    }
 }

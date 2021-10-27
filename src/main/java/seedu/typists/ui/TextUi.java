@@ -1,7 +1,5 @@
 package seedu.typists.ui;
 
-import java.io.IOException;
-
 import seedu.typists.common.Error;
 import seedu.typists.content.Animation;
 

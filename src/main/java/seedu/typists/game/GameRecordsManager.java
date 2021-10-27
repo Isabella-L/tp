@@ -1,16 +1,25 @@
 package seedu.typists.game;
 
+import seedu.typists.storage.Storage;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameRecordsManager {
 
     private static GameRecordsManager instance = null;
-    private ArrayList<GameRecord> timeLimitedGameRecords = null;
-    private ArrayList<GameRecord> wordLimitedGameRecords = null;
+    private ArrayList<GameRecord> timeLimitedGameRecords;
+    private ArrayList<GameRecord> wordLimitedGameRecords;
 
     private GameRecordsManager() {
         // get gameRecords using some file reader.
+        timeLimitedGameRecords = Storage.readGameRecords("Time-limited");
+        wordLimitedGameRecords = Storage.readGameRecords("Word-limited");
+    }
+
+    public void updateGameRecords() {
+        Storage.writeGameRecords(timeLimitedGameRecords, "Time-limited");
+        Storage.writeGameRecords(wordLimitedGameRecords, "Word-limited");
     }
 
     public static GameRecordsManager getGameRecordsManager() {
@@ -23,6 +32,7 @@ public class GameRecordsManager {
     public void addGameRecord(HashMap<String, Object> gameSummary) {
         GameRecord newGameRecord = createGameRecord(gameSummary);
         addRecordToArray(newGameRecord);
+        writeRecordToFile(newGameRecord);
     }
 
     private GameRecord createGameRecord(HashMap<String, Object> gameSummary) {
@@ -50,6 +60,17 @@ public class GameRecordsManager {
         } else {
             timeLimitedGameRecords.add(gameRecord);
         }
+    }
+
+    private void writeRecordToFile(GameRecord gameRecord) {
+        String gameMode = gameRecord.getGameMode();
+        if (gameMode == "Word Limited") {
+            Storage.writeGameRecords(wordLimitedGameRecords, "Word-limited");
+        } else {
+            Storage.writeGameRecords(timeLimitedGameRecords, "Time-limited");
+
+        }
+
     }
 
 }

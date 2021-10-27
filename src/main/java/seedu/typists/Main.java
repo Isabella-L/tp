@@ -5,7 +5,7 @@ import seedu.typists.command.Command;
 import seedu.typists.command.CommandFactory;
 import seedu.typists.ui.TextUi;
 
-import seedu.typists.storage.StorageFile;
+import seedu.typists.storage.Storage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,12 +20,12 @@ public class Main {
     public static final int LINE_LENGTH = 10;
     public static Content content;
     public static TextUi uiBot;
-    StorageFile storage;
+    Storage storage;
 
 
     public Main() {
         uiBot = new TextUi();
-        this.storage = new StorageFile();
+        this.storage = new Storage();
         content = new Content();
     }
 

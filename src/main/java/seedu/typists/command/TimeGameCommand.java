@@ -1,6 +1,5 @@
 package seedu.typists.command;
 
-import seedu.typists.command.Command;
 import seedu.typists.game.DataProcessor;
 import seedu.typists.game.TimeModeGame;
 

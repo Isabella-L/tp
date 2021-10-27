@@ -68,12 +68,14 @@ public class SummaryUi {
                 + "|" + String.format("%.2f", correctWordPercentage) + "%\n");
     }
 
+
     static void printErrorWords(ArrayList<String> errorWords) {
         setUpLog();
         assert errorWords != null;
         System.out.print("Mistakes: ");
         if (errorWords.size() == 0) {
             System.out.print("No words typed wrongly.\n");
+
             return;
         }
         for (int i = 0; i < errorWords.size(); i++) {
@@ -98,7 +100,7 @@ public class SummaryUi {
         System.out.print("Total Time taken for the game: " + String.format("%.2f", timeElapsed) + " seconds\n");
     }
 
-    private static void setUpLog() {
+    public static void setUpLog() {
         LogManager.getLogManager().reset();
         LOGGER.setLevel(Level.ALL);
 
@@ -115,7 +117,7 @@ public class SummaryUi {
             LOGGER.log(Level.SEVERE, "File logger failed to set up\n", e);
         }
 
-        LOGGER.info("Set up log in TextUi");
+        LOGGER.info("Set up log in SummaryUi");
     }
 
 
