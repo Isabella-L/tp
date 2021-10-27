@@ -15,7 +15,7 @@ import java.util.logging.ConsoleHandler;
 
 import static seedu.typists.common.Messages.SUMMARY;
 
-public class SummaryUi {
+public class SummaryUi extends TextUi {
 
     private static final Logger LOGGER = Logger.getLogger(TextUi.class.getName());
 
@@ -91,7 +91,6 @@ public class SummaryUi {
         System.out.print("Mistakes: ");
         if (errorWords.size() == 0) {
             System.out.print("No words typed wrongly.\n");
-
             return;
         }
         for (int i = 0; i < errorWords.size(); i++) {
@@ -104,9 +103,7 @@ public class SummaryUi {
                 System.out.print("|");
             }
         }
-        if ((errorWords.size() - 1) % 8 != 0) {
-            System.out.print("\n");
-        }
+        System.out.print("\n");
     }
 
     private static void printOverview(double timeElapsed, String gameMode, double wpm) {

@@ -67,7 +67,7 @@ public class FileParser {
     }
 
     private static ArrayList<String> getErrorWords(String[] gameRecordStats) {
-        if (gameRecordStats.length <= 8) {
+        if (gameRecordStats[8].trim().equals("[]")) {
             return new ArrayList<>();
         }
         String[] errorWords = gameRecordStats[8].substring(1, gameRecordStats[8].length() - 1).split(",");

@@ -84,7 +84,7 @@ public class HistoryCommand implements Command {
                     + "Input \"history -h\" for help\n");
         } else {
             if (args.size() < indexGameMode + 2) {
-                throw new InvalidCommandException("Missing argument for game more option.\n");
+                throw new InvalidCommandException("Missing argument for game mode option.\n");
             }
             gameMode = args.get(indexGameMode + 1);
 

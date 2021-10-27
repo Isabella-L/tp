@@ -55,7 +55,7 @@ public class GameRecordsManager {
 
     private void addRecordToArray(GameRecord gameRecord) {
         String gameMode = gameRecord.getGameMode();
-        if (gameMode.equals("Word Limited")) {
+        if (gameMode.equals("Word-limited")) {
             wordLimitedGameRecords.add(gameRecord);
         } else {
             timeLimitedGameRecords.add(gameRecord);
@@ -87,7 +87,7 @@ public class GameRecordsManager {
 
     private void writeRecordToFile(GameRecord gameRecord) {
         String gameMode = gameRecord.getGameMode();
-        if (gameMode == "Word Limited") {
+        if (gameMode.equals("Word-limited")) {
             Storage.writeGameRecords(wordLimitedGameRecords, "Word-limited");
         } else {
             Storage.writeGameRecords(timeLimitedGameRecords, "Time-limited");
@@ -100,6 +100,18 @@ public class GameRecordsManager {
             return wordLimitedGameRecords.size();
         } else {
             return timeLimitedGameRecords.size();
+        }
+    }
+
+    public void clearAllRecords(String gameMode) {
+        assert (gameMode.equals("Time-limited") || gameMode.equals("Word-limited") || gameMode.equals("all"));
+        if (gameMode.equals("Word-limited")) {
+            wordLimitedGameRecords.clear();
+        } else if (gameMode.equals("Time-limited")) {
+            timeLimitedGameRecords.clear();
+        } else {
+            wordLimitedGameRecords.clear();
+            timeLimitedGameRecords.clear();
         }
     }
 }

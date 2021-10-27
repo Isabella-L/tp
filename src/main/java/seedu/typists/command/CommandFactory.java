@@ -17,6 +17,8 @@ public class CommandFactory {
             return new ErrorCommand();
         case "history":
             return new HistoryCommand();
+        case "clear":
+            return new ClearCommand();
         case "bye":
             return new ExitCommand();
         default:
