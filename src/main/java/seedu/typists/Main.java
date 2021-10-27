@@ -16,7 +16,7 @@ public class Main {
     /**
      * Version info of the program.
      */
-    public static final String VERSION = "Typist - Version 1.0";
+    public static final String VERSION = "Typist - Version 2.0";
     public static final int LINE_LENGTH = 10;
     public static Content content;
     public static TextUi uiBot;

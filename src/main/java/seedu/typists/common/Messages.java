@@ -19,6 +19,14 @@ public class Messages {
                     + " ___/ / /_/ / /  / / /  / / ___ |/ _, _/ / /  \n"
                     + "/____/\\____/_/  /_/_/  /_/_/  |_/_/ |_| /_/";
 
+    public static final String HISTORY =
+            "    __  _____________________  ______  __\n"
+                    + "   / / / /  _/ ___/_  __/ __ \\/ __ \\ \\/ /\n"
+                    + "  / /_/ // / \\__ \\ / / / / / / /_/ /\\  / \n"
+                    + " / __  // / ___/ // / / /_/ / _, _/ / /  \n"
+                    + "/_/ /_/___//____//_/  \\____/_/ |_| /_/";
+
+
     public static final String KEYBOARD =
             ",---,---,---,---,---,---,---,---,---,---,---,---,---,-------,\n"
                     + "|1/2| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | + | ' | <-    |\n"
@@ -57,22 +65,23 @@ public class Messages {
             + "content: set the content\n"
             + "word: start a new word game\n"
             + "time: start a new timer game\n"
+            + "history: view past game records\n"
             + "bye: exit typist";
 
     //This sample text is gotten from https://www.lipsum.com/
     public static final String SAMPLE_TEXT = "lorem ipsum is simply dummy text of the printing and typesetting "
-           + "imply dummy text of the printing and typesetting industry ipum is simply dummy "
-           + "dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy "
-           + "dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy "
-           + "industry industry industry industry industry industry industry industry industry industry industry "
-           + "industry industry industry industry industry industry industry industry industry industry industry "
-           + "industry industry industry industry industry industry industry industry industry industry industry "
-           + "industry industry industry industry industry industry industry industry industry industry industry "
-           + "industry industry industry industry industry industry industry industry industry industry industry "
-           + "industry industry industry industry industry industry industry industry industry industry industry "
-           + "industry industry industry industry industry industry industry industry industry industry industry "
-           + "industry industry industry industry industry industry industry industry industry industry industry "
-           + "industry industry industry industry industry industry industry industry industry industry industry ";
+            + "imply dummy text of the printing and typesetting industry ipum is simply dummy "
+            + "dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy "
+            + "dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy "
+            + "industry industry industry industry industry industry industry industry industry industry industry "
+            + "industry industry industry industry industry industry industry industry industry industry industry "
+            + "industry industry industry industry industry industry industry industry industry industry industry "
+            + "industry industry industry industry industry industry industry industry industry industry industry "
+            + "industry industry industry industry industry industry industry industry industry industry industry "
+            + "industry industry industry industry industry industry industry industry industry industry industry "
+            + "industry industry industry industry industry industry industry industry industry industry industry "
+            + "industry industry industry industry industry industry industry industry industry industry industry "
+            + "industry industry industry industry industry industry industry industry industry industry industry ";
 
     //public static final String MESSAGE_GOODBYE = "Goodbye!";
     //public static final String MESSAGE_INIT_FAILED = "Failed to initialise address book application. Exiting...";

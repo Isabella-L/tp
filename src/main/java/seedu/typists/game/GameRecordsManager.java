@@ -55,10 +55,33 @@ public class GameRecordsManager {
 
     private void addRecordToArray(GameRecord gameRecord) {
         String gameMode = gameRecord.getGameMode();
-        if (gameMode == "Word Limited") {
+        if (gameMode.equals("Word Limited")) {
             wordLimitedGameRecords.add(gameRecord);
         } else {
             timeLimitedGameRecords.add(gameRecord);
+        }
+    }
+
+
+    public ArrayList<GameRecord> getGameRecords(String gameMode, int numberOfRecords) {
+
+        assert ((gameMode.equals("Time-limited")) || (gameMode.equals("Word-limited")));
+        if (gameMode.equals("Time-limited")) {
+            if (numberOfRecords > timeLimitedGameRecords.size()) {
+                return null;
+            }
+            return new ArrayList<>(timeLimitedGameRecords.subList(
+                    timeLimitedGameRecords.size() - numberOfRecords,
+                    timeLimitedGameRecords.size()
+            ));
+        } else {
+            if (numberOfRecords > wordLimitedGameRecords.size()) {
+                return null;
+            }
+            return new ArrayList<>(wordLimitedGameRecords.subList(
+                    wordLimitedGameRecords.size() - numberOfRecords,
+                    wordLimitedGameRecords.size()
+            ));
         }
     }
 
@@ -70,7 +93,13 @@ public class GameRecordsManager {
             Storage.writeGameRecords(timeLimitedGameRecords, "Time-limited");
 
         }
-
     }
 
+    public int getNumberOfGameRecords(String gameMode) {
+        if (gameMode.equals("Word-limited")) {
+            return wordLimitedGameRecords.size();
+        } else {
+            return timeLimitedGameRecords.size();
+        }
+    }
 }

@@ -55,9 +55,9 @@ public class SummaryManager {
             assert expectedLine.size() > 0;
             ArrayList<String> actualLine = new ArrayList<>(Arrays.asList(actualInput.get(outerLoopCount)));
 
+            int innerLoopCount = 0;
             for (String expectedWord : expectedLine) {
 
-                int innerLoopCount = 0;
                 if (actualLine.size() == 0) {
                     ArrayList<String> remainingWords = new ArrayList<>(
                             expectedLine.subList(innerLoopCount, expectedLine.size())

@@ -75,7 +75,7 @@ public class TimeModeGame extends Game {
             }
             updateUserLines(inputs);
             ui.printScreen("Game Finished.");
-            HashMap<String, Object> summary = handleSummary(wordLines, userLines, realGameTime, "Word-limited");
+            HashMap<String, Object> summary = handleSummary(displayedLines, userLines, realGameTime, "Word-limited");
             handleStorage(summary);
         }
     }
