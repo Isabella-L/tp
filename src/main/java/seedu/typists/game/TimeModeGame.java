@@ -1,5 +1,7 @@
 package seedu.typists.game;
 
+import seedu.typists.exception.ExceedRangeException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +13,7 @@ import static seedu.typists.common.Utils.splitStringIntoWordList;
 import static seedu.typists.common.Utils.getDisplayLines;
 
 public class TimeModeGame extends Game {
+    protected String targetWordSet;
     protected final int timeInSeconds;
     protected final ArrayList<String> wordLists;
     protected int wordsPerLine;
@@ -19,6 +22,7 @@ public class TimeModeGame extends Game {
 
     public TimeModeGame(int timeInSeconds, String targetWordSet, int wordsPerLine, boolean isReady) {
         super();
+        this.targetWordSet = targetWordSet;
         assert targetWordSet != null : "text passed into Time Game should not be null.";
         this.wordLists = splitStringIntoWordList(targetWordSet);
         this.timeInSeconds = timeInSeconds;
@@ -48,10 +52,14 @@ public class TimeModeGame extends Game {
                     gameTime = (double) currTime / 1000;
                     timeOver = true;
                 } else {
-                    String[] display = getDisplayLines(wordLists, wordsPerLine, currentRow);
-                    ui.printLine(display);
-                    displayedLines.add(display);
-                    inputs.add(in.nextLine());
+                    try {
+                        String[] display = getDisplayLines(wordLists, wordsPerLine, currentRow);
+                        ui.printLine(display);
+                        displayedLines.add(display);
+                        inputs.add(in.nextLine());
+                    } catch (ExceedRangeException e) {
+                        currentRow = 0;
+                    }
                     currentRow++;
                 }
             }
@@ -74,7 +82,6 @@ public class TimeModeGame extends Game {
         HashMap<String, Object> summary = handleSummary(displayedLines, userLines, gameTime, "Time-limited");
         handleStorage(summary);
     }
-
 
     public void updateUserLines(List<String> stringArray) {
         userLines = getWordLineFromStringArray(stringArray);

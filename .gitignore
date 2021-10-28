@@ -15,3 +15,7 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+time-limited_records.txt
+seedu.typists.ui.TextUi.log
+seedu.typists.ui.TextUi.log.1
+seedu.typists.ui.TextUi.log.lck
