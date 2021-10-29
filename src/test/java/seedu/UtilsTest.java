@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.typists.common.Utils.getDisplayLines;
 import static seedu.typists.common.Utils.splitStringIntoWordList;
+import static seedu.typists.common.Utils.getDisplayLinesWithoutNull;
 
 public class UtilsTest {
     private static final String SAMPLE = "this is test text here";
@@ -27,7 +26,7 @@ public class UtilsTest {
 
     @Test
     public void getDisplayLines_inRange_success() throws ExceedRangeException {
-        String[] displayed = getDisplayLines(places, 3, 3);
+        String[] displayed = getDisplayLinesWithoutNull(places, 3, 3);
         String[] result = { "is1", "test1", "text1"};
         for (int i = 0; i < displayed.length; i++) {
             assertEquals(displayed[i], result[i]);
@@ -36,7 +35,7 @@ public class UtilsTest {
 
     @Test
     public void getDisplayLines_outRange_success() throws ExceedRangeException {
-        String[] displayed = getDisplayLines(places, 6, 2);
+        String[] displayed = getDisplayLinesWithoutNull(places, 6, 2);
         String[] result = { "is1", "test1", "text1", "here1"};
         for (int i = 0; i < displayed.length; i++) {
             assertEquals(displayed[i], result[i]);

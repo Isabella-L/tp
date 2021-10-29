@@ -31,4 +31,11 @@ public class GameUi extends TextUi {
         viewAnimateLeft("Your progress:" + String.valueOf(a) + "/" + String.valueOf(b));
     }
 
+    public void printResetContent(int n) {
+        printScreen(
+                "Please reset your content to more than "
+                + n + " words."
+        );
+    }
+
 }

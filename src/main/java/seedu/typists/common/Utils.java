@@ -19,32 +19,6 @@ public class Utils {
         return new ArrayList<>(Arrays.asList(line.split(" ")));
     }
 
-
-    /** get one line that is supposed to be displayed at one time of game. **/
-    public static String[] getDisplayLines(ArrayList<String> wordLists, int wordsPerLine, int row)
-            throws ExceedRangeException {
-        int startIndex = (row - 1) * wordsPerLine;
-        assert startIndex >= 0 : "word index should be non-negative";
-        String[] line = new String[wordsPerLine];
-
-        try {
-            for (int i = 0; i < wordsPerLine; i++) {
-                if (startIndex + i > wordLists.size() - 1) {
-                    break;
-                }
-                line[i] = wordLists.get(startIndex + i);
-            }
-        } catch (IndexOutOfBoundsException e) {
-            throw new ExceedRangeException();
-        }
-        
-        //remove null elements
-        line = Arrays.stream(line)
-                .filter(s -> (s != null && s.length() > 0))
-                .toArray(String[]::new);
-        return line;
-    }
-
     /** group the word list into groups of x, where x is the number of words per line. */
     public static ArrayList<String[]> getWordLines(String text, int lineLength) {
         ArrayList<String> wordList = splitStringIntoWordList(text);
@@ -62,6 +36,54 @@ public class Utils {
             }
         }
         return wordLines;
+    }
+
+    /**
+     * get one line that is supposed to be displayed at one time of game.
+     *
+     * @param wordLists content in the form of arraylist of words
+     * @param wordsPerLine number of words to be displayed
+     * @param row current row in the content
+     **/
+    public static String[] getDisplayLines(ArrayList<String> wordLists, int wordsPerLine, int row)
+            throws ExceedRangeException {
+        int startIndex = (row - 1) * wordsPerLine;
+        assert startIndex >= 0 : "word index should be non-negative";
+        String[] line = new String[wordsPerLine];
+
+        try {
+            for (int i = 0; i < wordsPerLine; i++) {
+                line[i] = wordLists.get(startIndex + i);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new ExceedRangeException();
+        }
+        return line;
+    }
+
+    /** same as getDisplayLines but added remove null feature. **/
+    public static String[] getDisplayLinesWithoutNull(ArrayList<String> wordLists, int wordsPerLine, int row)
+            throws ExceedRangeException {
+        int startIndex = (row - 1) * wordsPerLine;
+        assert startIndex >= 0 : "word index should be non-negative";
+        String[] line = new String[wordsPerLine];
+
+        try {
+            for (int i = 0; i < wordsPerLine; i++) {
+                if (startIndex + i > wordLists.size() - 1) {
+                    break;
+                }
+                line[i] = wordLists.get(startIndex + i);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new ExceedRangeException();
+        }
+
+        //remove null elements
+        line = Arrays.stream(line)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+        return line;
     }
 
     /** same function as getWordLines, but the param is ArrayList not string. */

@@ -1,5 +1,6 @@
 package seedu.typists.game;
 
+import seedu.typists.exception.ExceedRangeException;
 import seedu.typists.ui.GameUi;
 import seedu.typists.ui.SummaryUi;
 import seedu.typists.ui.TextUi;
@@ -25,6 +26,9 @@ public abstract class Game {
     public double getDuration(long startTime, long endTime) {
         return (double) (endTime - startTime) / 1000;
     }
+
+
+    public abstract void displayLines(int row);
 
     public abstract void runGame();
 

@@ -5,6 +5,7 @@ import seedu.typists.exception.InvalidCommandException;
 import seedu.typists.game.Game;
 import seedu.typists.game.TimeModeGame;
 import seedu.typists.game.WordLimitGame;
+import seedu.typists.ui.GameUi;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,8 @@ public class GameCommand implements Command {
             System.out.println("Please specify game type.");
         } catch (NullPointerException e) {
             //exit
+        } catch (StackOverflowError e) {
+            new GameUi().printResetContent(LINE_LENGTH);
         }
     }
 
@@ -63,13 +66,13 @@ public class GameCommand implements Command {
         } catch (InvalidCommandException e) {
             System.out.println(
                     "Please enter time in multiple of 30 seconds.\n"
-                            + "e.g. time -t 30 "
+                            + "e.g. game -t 30 "
             );
         } catch (IncompleteCommandException | IndexOutOfBoundsException e) {
             System.out.println(
                     "Please specify duration of the game using "
                             + TIME_SIGNIFIER + "\n"
-                            + "e.g. time -t 60 "
+                            + "e.g. game -t 60 "
             );
         } catch (NumberFormatException e) {
             System.out.println("Duration should be a number");

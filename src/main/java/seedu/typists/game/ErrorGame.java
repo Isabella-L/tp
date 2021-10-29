@@ -29,6 +29,11 @@ public class ErrorGame extends Game {
         return true;
     }
 
+    @Override
+    public void displayLines(int row) {
+
+    }
+
     public void runGame() {
         if (readyToStartGame()) {
             for (int i = 0; i < wordLines.size(); i++) {

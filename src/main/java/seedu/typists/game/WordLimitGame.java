@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import static seedu.typists.common.Utils.getDisplayLines;
+import static seedu.typists.common.Utils.getDisplayLinesWithoutNull;
 import static seedu.typists.common.Utils.getWordLineFromStringArray;
 import static seedu.typists.parser.StringParser.splitString;
 
@@ -29,6 +29,19 @@ public class WordLimitGame extends Game {
         this.wordsPerLine = wordsPerLine;
         this.content1 = targetWordSet;
         this.wordLimit = getWordLimit();
+    }
+
+
+    @Override
+    public void displayLines(int row) {
+        String[] displayed = new String[0];
+        try {
+            displayed = getDisplayLinesWithoutNull(eachWord,wordsPerLine,row);
+        } catch (ExceedRangeException e) {
+            e.printStackTrace();
+        }
+        displayedLines.add(displayed);
+        ui.printLine(displayed);
     }
 
     @Override
@@ -74,14 +87,7 @@ public class WordLimitGame extends Game {
         boolean isExit = false;
         while (!isExit) {
             row++;
-            String[] displayed = new String[0];
-            try {
-                displayed = getDisplayLines(eachWord,wordsPerLine,row);
-            } catch (ExceedRangeException e) {
-                e.printStackTrace();
-            }
-            displayedLines.add(displayed);
-            ui.printLine(displayed);
+            displayLines(row);
 
             //read user input
             String fullCommand = ui.readCommand();
@@ -100,8 +106,8 @@ public class WordLimitGame extends Game {
     }
 
     public void gameSummary() {
-        double realGameTime = getDuration(beginTime, getTimeNow());
-        HashMap<String, Object> summary = handleSummary(displayedLines, userLines, realGameTime, "Word-limited");
+        gameTime = getDuration(beginTime, getTimeNow());
+        HashMap<String, Object> summary = handleSummary(displayedLines, userLines, gameTime, "Word-limited");
         handleStorage(summary);
     }
 
