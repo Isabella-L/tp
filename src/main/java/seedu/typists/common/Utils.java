@@ -29,12 +29,19 @@ public class Utils {
 
         try {
             for (int i = 0; i < wordsPerLine; i++) {
+                if (startIndex + i > wordLists.size() - 1) {
+                    break;
+                }
                 line[i] = wordLists.get(startIndex + i);
             }
         } catch (IndexOutOfBoundsException e) {
             throw new ExceedRangeException();
         }
-
+        
+        //remove null elements
+        line = Arrays.stream(line)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
         return line;
     }
 
