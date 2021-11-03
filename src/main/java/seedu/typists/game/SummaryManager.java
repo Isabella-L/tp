@@ -58,7 +58,7 @@ public class SummaryManager {
             int innerLoopCount = 0;
             for (String expectedWord : expectedLine) {
 
-                if (actualLine.size() == 0) {
+                if (actualLine.isEmpty()) {
                     ArrayList<String> remainingWords = new ArrayList<>(
                             expectedLine.subList(innerLoopCount, expectedLine.size())
                     );

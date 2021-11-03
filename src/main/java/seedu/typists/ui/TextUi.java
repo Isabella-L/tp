@@ -168,24 +168,6 @@ public class TextUi {
         ui.showAnimatedSentenceErrorRateSummary(rounded);
     }
 
-
-    /*public void showSummary(int errorWordCount, double errorPercentage, List<String> errorWords, double wpm,
-                            int totalWordTyped, double gameTime) {
-        assert errorWordCount >= 0;
-        assert errorPercentage >= 0;
-        assert totalWordTyped >= 0;
-        assert gameTime > 0;
-        assert wpm >= 0;
-
-        out.print(SUMMARY + '\n');
-        out.print("Number of Wrong Words: " + errorWordCount + "/" + totalWordTyped + '\n');
-        out.print("Error Percentage of Wrong Words: " + String.format("%.2f", errorPercentage) + "%\n");
-        out.print("Wrong Words:\n");
-        printErrorWords(errorWords);
-        out.print("WPM: " + String.format("%.2f", wpm) + '\n');
-        out.print("Total Time taken for the game: " + String.format("%.2f", gameTime) + " seconds\n");
-    }*/
-
     public void showAnimatedSummary(int errorWordCount, double errorPercentage, double wpm,
                                     int totalWordTyped, double gameTime) throws InterruptedException {
         out.print(SUMMARY + '\n');

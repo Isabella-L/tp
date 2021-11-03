@@ -38,15 +38,18 @@ e.g. `history -g time -h -n 10` will be interpreted as `history -h`.
 ### Usage
 ### Open Game
 
-### {Feature name}: {`Keyword`}
-Description of feature  
-Format: {format of command}
-* Explanation 1 of format
-* Explanation 2 of format
-<!-- -->
+### Set Content: `content`
+Set the typing content before the game.  
+Format: `content` `1-3` `[optional]`
+
+After entering `content`, user can type an integer from 1-3 to choose from following:
+
+1. Opening of famous books
+2. Wikipedia article
+3. Random sentence of custom length
+<!-- input example -->
 Examples
-* command example 1
-* command example 2
+* `content` `1` `3`
 <!-- -->
 
 ### Open Game: `game`
@@ -56,6 +59,9 @@ Format: `game GAME_MODE [-c]`
 * GAME_MODE 
   * `-w` for game in Word Limit Mode 
   * `-t` for game in Time Limit Mode
+* For Word Limit Game:
+  * Format: `game -w [-c]`
+  * Exit: `Exit` allows user to terminate the current game.
 * For Time Limit Game:
   * Format: `game -t TIME_LIMIT [-sn] [-c]`
   * START_NOW `-sn` allows user to start the game immediately without the "ready to start?" prompt.
@@ -96,8 +102,8 @@ Typists automatically stores the updated game records into text files when gamer
 ### !Warning: Editing the data file
 Typists is a game application and only game records will be stored. 
 Gamers should not edit the data it will manipulate the integrity of the records.
-In the event where the data is editted and the wrong format is inputted, the game will crash when it tries to read the file. 
-The only way to make it run smoothly again is to delete the text files, hence losing all the game data.
+In the event where the data is edited and the wrong format is inputted, the file contents will be cleared, 
+hence losing all the game data.
 
 
 
@@ -107,7 +113,9 @@ List of the keywords are shown below:
 
 `content`-Set the content
 
-`new`-Enter a word-limited game mode
+`game -w`-Enter a word-limited game mode
+
+`game -w -c`-Enter a word-limited game mode with content setting
 
 >Exit word-limited game mode command: `Exit`
 

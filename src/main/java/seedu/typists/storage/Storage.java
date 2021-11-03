@@ -86,6 +86,10 @@ public class Storage {
         } else {
             for (String gameRecordString : gameRecordsStringArrayList) {
                 GameRecord gameRecord = FileParser.convertStringToGameRecord(gameRecordString);
+                if (gameRecord == null) {
+                    gameRecords = new ArrayList<>();
+                    return gameRecords;
+                }
                 gameRecords.add(gameRecord);
             }
             return gameRecords;
@@ -116,7 +120,7 @@ public class Storage {
 
     }
 
-    private static void setUpLog() {
+    public static void setUpLog() {
         LogManager.getLogManager().reset();
         LOGGER.setLevel(Level.ALL);
 

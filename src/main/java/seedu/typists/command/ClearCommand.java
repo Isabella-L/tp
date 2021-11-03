@@ -62,7 +62,7 @@ public class ClearCommand implements Command {
         }
         if (!gameMode.equals("time") && !gameMode.equals("word") && !gameMode.equals("all")) {
             throw new InvalidCommandException("Invalid argument for game mode option.\n"
-                    + "Input \"history -h\" for help\n");
+                    + "Input \"clear -h\" for help.\n");
         } else {
             if (gameMode.equals("all")) {
                 gameMode = "all";

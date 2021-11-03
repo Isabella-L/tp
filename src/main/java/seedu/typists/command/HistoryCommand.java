@@ -68,10 +68,15 @@ public class HistoryCommand implements Command {
             try {
                 totalNumberOfRecords = gameRecordsManager.getNumberOfGameRecords(gameMode);
                 numberOfRecords = Integer.parseInt(args.get(indexNumberOfRecords + 1));
+                if (numberOfRecords <= 0) {
+                    throw new InvalidCommandException("Invalid argument for number of records option.\n"
+                            + "Option only accepts positive integer values."
+                            + "Input \"history -h\" for help.\n");
+                }
             } catch (NumberFormatException e) {
                 throw new InvalidCommandException("Invalid argument for number of records option.\n"
-                        + "Option only accepts integer values."
-                        + "Input \"history -h\" for help\n");
+                        + "Option only accepts positive integer values.\n"
+                        + "Input \"history -h\" for help.\n");
             }
         }
 
@@ -81,7 +86,7 @@ public class HistoryCommand implements Command {
         int indexGameMode = args.indexOf("-" + GAME_MODE_OPTION);
         if (indexGameMode == -1) {
             throw new InvalidCommandException("Invalid command.\n"
-                    + "Input \"history -h\" for help\n");
+                    + "Input \"history -h\" for help.\n");
         } else {
             if (args.size() < indexGameMode + 2) {
                 throw new InvalidCommandException("Missing argument for game mode option.\n");
@@ -91,7 +96,7 @@ public class HistoryCommand implements Command {
         }
         if (!gameMode.equals("time") && !gameMode.equals("word")) {
             throw new InvalidCommandException("Invalid argument for game mode option.\n"
-                    + "Input \"history -h\" for help\n");
+                    + "Input \"history -h\" for help.\n");
         } else {
             gameMode = gameMode.substring(0, 1).toUpperCase() + gameMode.substring(1) + "-limited";
         }

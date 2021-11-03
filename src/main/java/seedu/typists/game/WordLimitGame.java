@@ -16,16 +16,15 @@ public class WordLimitGame extends Game {
     private ArrayList<String> eachWord;
     protected ArrayList<String[]> wordLines;
     protected int wordLimit;
-    private int gameIndex;
     private final int wordsPerLine;
     private final String content1;
     private long beginTime;
+    private String[] displayed;
 
 
     public WordLimitGame(String targetWordSet, int wordsPerLine) {
         super();
         this.eachWord = new ArrayList<>(100);
-        this.gameIndex = 0;
         this.wordsPerLine = wordsPerLine;
         this.content1 = targetWordSet;
         this.wordLimit = getWordLimit();
@@ -34,20 +33,13 @@ public class WordLimitGame extends Game {
 
     @Override
     public void displayLines(int row) {
-        String[] displayed = new String[0];
+        displayed = new String[0];
         try {
             displayed = getDisplayLinesWithoutNull(eachWord,wordsPerLine,row);
         } catch (ExceedRangeException e) {
             e.printStackTrace();
         }
-        displayedLines.add(displayed);
         ui.printLine(displayed);
-    }
-
-    @Override
-    public void runGame() {
-        game();
-        gameSummary();
     }
 
     public int getTotalSentence() {
@@ -73,13 +65,9 @@ public class WordLimitGame extends Game {
             e.printStackTrace();
         }
         eachWord = new ArrayList<>(eachWord.subList(0, wordLimit));
-        System.out.println("ori");
-        for (String arr : eachWord) {
-            System.out.println(arr);
-        }
     }
 
-    public void game() {
+    public void runGame() {
         trimContent(wordLimit);
         beginTime = getTimeNow();
         List<String> inputs = new ArrayList<>();
@@ -87,13 +75,15 @@ public class WordLimitGame extends Game {
         boolean isExit = false;
         while (!isExit) {
             row++;
+            //display a single line
             displayLines(row);
-
             //read user input
             String fullCommand = ui.readCommand();
             if (fullCommand.equals("Exit")) {
                 break;
             }
+            //only add the line into displayedLines when the Command is not Exit
+            displayedLines.add(displayed);
 
             //update for summary
             inputs.add(fullCommand);

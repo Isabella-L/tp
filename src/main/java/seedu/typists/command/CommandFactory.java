@@ -11,8 +11,6 @@ public class CommandFactory {
             return new GameCommand();
         case "content":
             return new ContentCommand();
-        case "error":
-            return new ErrorCommand();
         case "history":
             return new HistoryCommand();
         case "clear":

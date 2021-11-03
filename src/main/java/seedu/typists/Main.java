@@ -3,6 +3,7 @@ package seedu.typists;
 import seedu.typists.content.Content;
 import seedu.typists.command.Command;
 import seedu.typists.command.CommandFactory;
+import seedu.typists.ui.SummaryUi;
 import seedu.typists.ui.TextUi;
 
 import seedu.typists.storage.Storage;
@@ -52,11 +53,16 @@ public class Main {
         } while (!command.equals("bye"));
     }
 
+    private void setUpLogs() {
+        SummaryUi.setUpLog();
+        Storage.setUpLog();
+    }
 
     /**
      * Runs the program until termination.
      */
     public void run() {
+        setUpLogs();
         start();
         runCommandLoop();
     }
