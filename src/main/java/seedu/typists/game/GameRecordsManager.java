@@ -107,11 +107,15 @@ public class GameRecordsManager {
         assert (gameMode.equals("Time-limited") || gameMode.equals("Word-limited") || gameMode.equals("all"));
         if (gameMode.equals("Word-limited")) {
             wordLimitedGameRecords.clear();
+            Storage.writeGameRecords(wordLimitedGameRecords, "Word-limited");
         } else if (gameMode.equals("Time-limited")) {
             timeLimitedGameRecords.clear();
+            Storage.writeGameRecords(timeLimitedGameRecords, "Time-limited");
         } else {
             wordLimitedGameRecords.clear();
             timeLimitedGameRecords.clear();
+            Storage.writeGameRecords(wordLimitedGameRecords, "Word-limited");
+            Storage.writeGameRecords(timeLimitedGameRecords, "Time-limited");
         }
     }
 }

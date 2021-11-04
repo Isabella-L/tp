@@ -2,6 +2,8 @@ package seedu.typists.common;
 
 import seedu.typists.exception.ExceedRangeException;
 import seedu.typists.exception.FaultyInputException;
+import seedu.typists.exception.InvalidCommandException;
+import seedu.typists.ui.TextUi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -94,5 +96,22 @@ public class Utils {
             wordLines.add(wordLine);
         }
         return wordLines;
+    }
+
+    /**
+     * Return a valid duration of time mode game.
+     * @param n integer that specify the duration
+     * @return n only if n is valid
+     * @throws InvalidCommandException thrown when the n is not a valid game duration
+     */
+    public static int isValidTime(int n) throws InvalidCommandException {
+        if (n < 0) {
+            new TextUi().printScreen("Duration should not be negative");
+            throw new InvalidCommandException();
+        } else if (n % 30 != 0 || n == 0) {
+            new TextUi().printScreen("Duration should be in multiple of 30 seconds.");
+            throw new InvalidCommandException();
+        }
+        return n;
     }
 }

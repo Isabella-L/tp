@@ -45,8 +45,8 @@ public class Main {
         do {
             String[] input = read().split(" ");
             command = input[0];
-            ArrayList<String> args = new ArrayList<>(Arrays.asList(Arrays.copyOfRange(input, 1, input.length)));
-            Command c = cmdFactory.getCommand(input[0]);
+            ArrayList<String> args = new ArrayList<>(Arrays.asList(input));
+            Command c = cmdFactory.getCommand(args);
             if (c != null) {
                 c.run(args);
             }

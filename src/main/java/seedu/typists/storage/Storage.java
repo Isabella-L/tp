@@ -114,7 +114,7 @@ public class Storage {
 
 
     private static String getFileName(String gameMode) {
-        assert ((gameMode == "Time-limited") || (gameMode == "Word-limited"));
+        assert ((gameMode.equals("Time-limited")) || (gameMode.equals("Word-limited")));
         String filename = gameMode.toLowerCase(Locale.ROOT) + "_records.txt";
         return filename;
 

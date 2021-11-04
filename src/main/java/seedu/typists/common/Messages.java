@@ -70,7 +70,8 @@ public class Messages {
     public static final String MESSAGE_ACKNOWLEDGE = "Brought to you by -- AY2122S1-CS2113-T13-4.";
     public static final String MESSAGE_HELP = "Manual:\n"
             + "content: set the content\n"
-            + "game: start a new game\n"
+            + "game -time: start a new time game\n"
+            + "game -word: start a new word game\n"
             + "history -g GAME_MODE [-n NUMBER_OF_RECORDS]: view past game records\n"
             + "clear [-g GAME_MODE]: clear all game records\n"
             + "bye: exit typist";
@@ -78,17 +79,12 @@ public class Messages {
     public static String MESSAGE_TIME_GAME_END = "Timer's UP!";
 
     //This sample text is gotten from https://www.lipsum.com/
-    public static final String SAMPLE_TEXT = "lorem ipsum is simply dummy text of the printing and typesetting "
-            + "imply dummy text of the printing and typesetting industry ipum is simply dummy "
-            + "dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy "
-            + "dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy "
-            + "industry industry industry industry industry industry industry industry industry industry industry "
-            + "industry industry industry industry industry industry industry industry industry industry industry "
-            + "industry industry industry industry industry industry industry industry industry industry industry "
-            + "industry industry industry industry industry industry industry industry industry industry industry "
-            + "industry industry industry industry industry industry industry industry industry industry industry "
-            + "industry industry industry industry industry industry industry industry industry industry industry "
-            + "industry industry industry industry industry industry industry industry industry industry industry "
-            + "industry industry industry industry industry industry industry industry industry industry industry "
-            + "industry industry industry industry industry industry industry industry industry industry industry ";
+    public static final String SAMPLE_TEXT =
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+                    + "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, "
+                    + "when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    + "It has survived not only five centuries, but also the leap into electronic typesetting, "
+                    + "remaining essentially unchanged. It was popularised in the 1960s with the release of "
+                    + "Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing"
+                    + " software like Aldus PageMaker including versions of Lorem Ipsum.";
 }

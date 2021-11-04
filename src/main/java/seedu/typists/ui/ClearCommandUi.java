@@ -8,11 +8,12 @@ public class ClearCommandUi {
         System.out.print("clear deletes all records for both games,"
                 + " or either of the game types, depending on your choice.\n");
         System.out.print("The format of the command is 'clear [-g GAME_MODE]'\n");
-        System.out.print("The arguments in the square brackets are optional."
-                + " If not inputted, the default is 'all' which means"
+        System.out.print("The arguments in the square brackets are optional.\n"
+                + "GAME_MODE specifies which game mode's record(s) to clear.\n"
+                + "If not inputted, the default is 'all' which means "
                 + "records from both the time- and word-limited will be cleared.\n");
-        System.out.print("The possible values for GAME_MODE is 'all', 'time', and, 'word\n");
-        System.out.print("'word' clears all game records for the word-limited mode\n"
+        System.out.print("The possible values for GAME_MODE is 'all', 'time', and, 'word'.\n");
+        System.out.print("'word' clears all game records for the word-limited mode.\n"
                 + "'time' clears all game records for the time-limited mode.\n");
     }
 

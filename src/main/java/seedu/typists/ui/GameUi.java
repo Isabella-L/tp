@@ -8,14 +8,13 @@ public class GameUi extends TextUi {
         printScreen(endMessage);
     }
 
-    public boolean readyToStartTimer() {
+    public void readyToStartTimer() {
         Scanner in = new Scanner(System.in);
         String command = "";
-        while (!command.equals("yes")) {
-            printScreen("Do you want to start now?");
+        while (!command.equals("start")) {
+            printScreen("Timer will start once you entered \"start\": ");
             command = in.nextLine();
         }
-        return true;
     }
 
     public void printOvershoot(double overshoot) {

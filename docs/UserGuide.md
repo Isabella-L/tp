@@ -21,20 +21,22 @@ Typist is a CLI typing game.
 
 ### Notes about the command format:
 
-* Words in UPPER_CASE are parameters to be supplied by the user.  
-e.g. in `history -g GAME_MODE`, `GAME_MODE` is a parameter which can be used as `history -g time`.
+* Words in UPPER_CASE are arguments to be supplied by the user.  
+e.g. in `history -g GAME_MODE`, `GAME_MODE` is an argument which can be used as `history -g time`.
 * Items in square brackets are optional.  
 e.g. `-g GAME_MODE [-n NUMBER_OF_RECORDS]` can be used as `-g time -n 9` or as `-g time`
 * Parameters can be in any order.  
 e.g. if command specifies `history -g GAME_MODE [-n NUMBER_OF_RECORDS]`, `history [-n NUMBER_OF_RECORDS] -g GAME_MODE`  
-is also acceptable.
-* If a parameter is expected only once in the command but you specified it multiple times, 
+is also acceptable.  
+Note: One parameter is defined as the option e.g. `-g` and its value (if there is such a field) e.g. `time`
+* If a parameter is expected only once in the command, but you specified it multiple times, 
 only the first occurrence of the parameter will be taken  
 e.g. if you specify `history -g time -g time -n 10`, only `history -g time -n 10` will be taken. 
-* For commands which have a help parameter, if `-h` is among the parameters provided, 
-all other parameters will be ignored and the guide for that command will be displayed.
-e.g. `history -g time -h -n 10` will be interpreted as `history -h`.
-
+* For commands which have a `-h` parameter, if `-h` is among the parameters provided, all other parameters will be 
+ignored and the guide for that command will be displayed.    
+e.g `history -g time -h -n 10` will be interpreted as `history -h`.
+* All parameters which do not conform to the command syntax will be ignored.  
+e.g.2 `clear -gtime` will be interpreted as `clear`
 ### Usage
 ### Open Game
 
@@ -57,18 +59,18 @@ Start a typing game.
 Format: `game GAME_MODE [-c]`
 * SET_CONTENT `-c` is optional, it allows user to set input content before game starts.
 * GAME_MODE 
-  * `-w` for game in Word Limit Mode 
-  * `-t` for game in Time Limit Mode
+  * `-word` for game in Word Limit Mode 
+  * `-time` for game in Time Limit Mode
 * For Word Limit Game:
-  * Format: `game -w [-c]`
+  * Format: `game -word [-c]`
   * Exit: `Exit` allows user to terminate the current game.
 * For Time Limit Game:
-  * Format: `game -t TIME_LIMIT [-sn] [-c]`
+  * Format: `game -time TIME_LIMIT [-sn] [-c]`
   * START_NOW `-sn` allows user to start the game immediately without the "ready to start?" prompt.
 <!-- -->
 Examples
-* `game -t 30 -sn` 
-* `game -w -c`
+* `game -time 30 -sn` 
+* `game -word -c`
 <!-- --> 
 
 
@@ -82,7 +84,22 @@ Examples
 * `history -g time -n 10`
 * `history -g word`
 <!-- -->
-
+Example of usage
+```
+history -g time -n 1
+    __  _____________________  ______  __
+   / / / /  _/ ___/_  __/ __ \/ __ \ \/ /
+  / /_/ // / \__ \ / / / / / / /_/ /\  / 
+ / __  // / ___/ // / / /_/ / _, _/ / /  
+/_/ /_/___//____//_/  \____/_/ |_| /_/
+Game Mode: Time-limited
+WPM: 49.71
+Total Time taken for the game: 36.21 seconds
+Number of Wrong Words: 0/30|0.00%
+Number of Correct Words: 30/30|100.00%
+Mistakes: No words typed wrongly.
+==================================================================
+```
 ### Clear past records: `clear` 
 Clear all past game records
 Format: `clear [-g GAME_MODE] [-h]`
@@ -93,10 +110,45 @@ Examples
 * `clear -g time`
 * `clear`
 <!-- -->
+Example of usage
+```
+clear -g time
+   ________    _________    ____     ____  ________________  ____  ____  _____
+  / ____/ /   / ____/   |  / __ \   / __ \/ ____/ ____/ __ \/ __ \/ __ \/ ___/
+ / /   / /   / __/ / /| | / /_/ /  / /_/ / __/ / /   / / / / /_/ / / / /\__ \
+/ /___/ /___/ /___/ ___ |/ _, _/  / _, _/ /___/ /___/ /_/ / _, _/ /_/ /___/ /
+\____/_____/_____/_/  |_/_/ |_|  /_/ |_/_____/\____/\____/_/ |_/_____//____/
 
+Successfully cleared Time-limited game records.
+```
+
+### View summary of game
+View summary of a just-played game.
+Typists automatically generates and displays the summary after a game ends.   
+The summary consists of the following fields:
+* Game mode
+* Word per minute (WPM)
+* Total time taken for the game
+* Number of wrong words and its percentage
+* Number of correct words and its percentage
+* Wrongly and not typed words (Mistakes)
+<!-- -->
+Example of usage
+```
+   _____ __  ____  _____  ______    ______  __
+  / ___// / / /  |/  /  |/  /   |  / __ \ \/ /
+  \__ \/ / / / /|_/ / /|_/ / /| | / /_/ /\  /
+ ___/ / /_/ / /  / / /  / / ___ |/ _, _/ / /  
+/____/\____/_/  /_/_/  /_/_/  |_/_/ |_| /_/
+Game Mode: Time-limited
+WPM: 49.71
+Total Time taken for the game: 36.21 seconds
+Number of Wrong Words: 0/30|0.00%
+Number of Correct Words: 30/30|100.00%
+Mistakes: No words typed wrongly.
+```
 ### Saving the data
-Typists automatically stores the updated game records into text files when gamer enters the 
-`bye` command to exit Typists.
+Typists automatically stores the game records (and any changes to them) into text files.
 
 
 ### !Warning: Editing the data file
@@ -113,9 +165,9 @@ List of the keywords are shown below:
 
 `content`-Set the content
 
-`game -w`-Enter a word-limited game mode
+`game -word`-Enter a word-limited game mode
 
-`game -w -c`-Enter a word-limited game mode with content setting
+`game -word -c`-Enter a word-limited game mode with content setting
 
 >Exit word-limited game mode command: `Exit`
 
@@ -131,7 +183,7 @@ Statistics of game is shown automatically after a game is finished.
 ## Example of usage:
 
 ```
-game -w
+game -word
      | Enter how many words you want the game to run: 
 5
      | lorem ipsum is simply dummy 
@@ -139,13 +191,16 @@ lorem ipsum is simply dummy
      | Your progress:5/5
 ```
 ```
-game -t 30 -sn
+game -time 30 -sn
      | lorem ipsum is simply dummy text of the printing and 
 lorem ipsum is simply dummy text of the printing and 
      | typesetting imply dummy text of the printing and typesetting industry 
 typesetting imply dummy text of the printing and typesetting industry
      | Timer's UP!
 ```
+
+
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -156,6 +211,6 @@ typesetting imply dummy text of the printing and typesetting industry
 
 | Feature  | Command |
 | ------------- | ------------- | 
-| Start Word Limit Game| `game -w [-c]` | 
-| Start Time Limit Game | `game -t TIME_LIMIT [-sn] [-c]`
+| Start Word Limit Game| `game -word [-c]` | 
+| Start Time Limit Game | `game -time TIME_LIMIT [-sn] [-c]`
 | Get History | `history -h`|

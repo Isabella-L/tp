@@ -10,9 +10,10 @@
      | Brought to you by -- AY2122S1-CS2113-T13-4.
      | Manual:
      | content: set the content
-     | game: start a new game
-     | history: view past game records
-     | clear: clear all game records
+     | game -time: start a new time game
+     | game -word: start a new word game
+     | history -g GAME_MODE [-n NUMBER_OF_RECORDS]: view past game records
+     | clear [-g GAME_MODE]: clear all game records
      | bye: exit typist
      | ===========================================================
 Updating game records...

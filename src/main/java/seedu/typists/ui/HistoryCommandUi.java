@@ -29,10 +29,10 @@ public class HistoryCommandUi {
     public static void displayHelp() {
         //do after user guide
         System.out.print("history shows the game records for your past games.\n");
-        System.out.print("The format of the command is 'history -g GAME_MODE [-n NUMBER_OF_RECORDS]'\n");
-        System.out.print("Only the arguments in the square brackets are optional.");
+        System.out.print("Command format: 'history -g GAME_MODE [-n NUMBER_OF_RECORDS]'\n");
+        System.out.print("Arguments in the square brackets are optional.\n");
         System.out.print("GAME_MODE specifies which game mode records you want to view.\n"
-                + "The possible values for GAME_MODE are 'time' and 'word'\n");
+                + "The possible values for GAME_MODE are 'time' and 'word'.\n");
         System.out.print("NUMBER_OF_RECORDS specifies the number of past records you want to view.\n"
                 + "Only positive integers are allowed.\n"
                 + "If not inputted, the default is the total number of game records "

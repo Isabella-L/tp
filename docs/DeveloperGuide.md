@@ -69,9 +69,9 @@ Its key methods are:
 <!-- -->
 Given below is an example usage scenario and how the program implements the feature.
 
-Step 1: The user launches the application (scenario assumes that there are several game records already stored in multiple files). 
+Step 1: The user launches the application (scenario assumes that there are several game records already stored in the text files). 
 
-Step 2: The user executes `view -m best -g time -n 9` to view his/her best statistics for the error game mode over the past 9 games. 
+Step 2: The user executes `view -m best -g time -n 4` to view his/her best statistics for the time-limited game mode over the past 4 games. 
 
 Step 3: A ViewCommand object is then instantiated.  
 
@@ -83,7 +83,7 @@ Step 4. ViewCommand calls the retrieveStatistics() method of StatisticsManager.
 Step 5: StatisticsManager creates a GameRecordsManager object.
 * The constructor of GameRecordsManager calls the readGameRecords() method of the Storage class to retrieve the gamer's past game records from the text files.
 <!-- -->
-![Alt text](uml/ViewStatistics-3.drawio.svg)
+![Alt text](uml/ViewStatistics-3.drawio.svg)  
 Step 6. StatisticsManager then calls getGamesRecords() method of GameRecordsManager() and self-invokes calculateBestStatistics().
 * Calculated statistics is returned.
 
