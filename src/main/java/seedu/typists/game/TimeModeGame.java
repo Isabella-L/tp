@@ -42,7 +42,7 @@ public class TimeModeGame extends Game {
             int n = Integer.parseInt(in.nextLine());
             return isValidTime(n);
         } catch (NumberFormatException e) {
-            System.out.println("Invalid Number!");
+            ui.printScreen("Invalid Number!");
         } catch (InvalidCommandException e) {
             //repeat getTimeLimit
         }

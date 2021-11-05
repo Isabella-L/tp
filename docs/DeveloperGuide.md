@@ -1,9 +1,13 @@
 
 # Developer Guide
 * [Acknowledgements](#acknowledgements)
-* [Design & Implementation](#design-&-implementation)
-
-* [Acknoledgements](#acknowledgements)
+* [Design](#design)
+  * [Architecture](#architecture)
+* [Implementation](#implementation)
+* [Product Scope](#product-scope)
+* [User Stories](#user-stories)
+* [Non-functional Requirements](#non-functional-requirements)
+* [Glossary](#glossary)
 
 ## Acknowledgements
 
@@ -11,11 +15,14 @@
 * https://www.baeldung.com/java-testing-system-out-println
 * https://github.com/fastily/jwiki
 
-##Architecture
 
+
+
+## Design
+### Architecture
 (Some architecture diagram)
 
-## Design & implementation
+## Implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
@@ -105,7 +112,6 @@ Single Responsibility Principle.
 <!-- -->
 
 ## Product scope
-
 Our product is a typing game, intent to provide enjoyment for people who are familiar with the CML.
 
 
@@ -125,8 +131,11 @@ Our product is a typing game, intent to provide enjoyment for people who are fam
 |v1.0|user|customize the time limit to finish a game|train myself to type faster|
 |v1.0|user|customize the word limit, in multiples of 100|have an optimal gaming experience by being able to choose my preferred length of text for the game|
 |v1.0|user|choose text from famous books, randomly generated text or customized text for my game|make my gaming experience more fun and fulfilling|
-|v2.0|user|view my game statistics after the game finishes|know how I fared|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|typist|view my error rate|know on average, what my error rate is|
+|v1.0|typist|see my word per minute after I've finished a game|know my typing speed|
+|v2.0|gamer|view my past records|see how I have improved over time|
+|v2.0|gamer|clear my past records|have a fresh start|
+|v2.0|typist|see the words I typed wrongly after I've finished a game|know which words I have to practice more|
 
 ## Non-Functional Requirements
 

@@ -5,7 +5,7 @@ package seedu.typists.common;
  */
 public class Messages {
     public static final String LOGO =
-            " ______            _      __\n"
+            "  ______            _      __\n"
                     + " /_  __/_  ______  (_)____/ /_\n"
                     + "  / / / / / / __ \\/ / ___/ __/\n"
                     + " / / / /_/ / /_/ / (__  ) /_\n"

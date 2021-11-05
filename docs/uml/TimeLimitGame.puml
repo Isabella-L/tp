@@ -1,0 +1,65 @@
+@startuml
+!include Style.puml
+
+participant ":GameCommand" as command
+participant "game:TimeModeGame" as game
+participant "ui:GameUi" as ui
+participant ":Util" as util
+
+-> command: run()
+activate command
+
+create game
+command -> game: createGame(...)
+activate game
+game -> util: splitStringIntoWordList(content)
+activate util
+util --> game: wordList
+deactivate
+game --> command: game
+deactivate
+
+command -> game: runGame();
+activate game
+game -> game: isReady(startNow)
+activate game
+game --> game: ready
+deactivate
+loop until TimeOver
+    alt Time Over
+    else
+        game -> util: getDisplayLines(wordList);
+        activate util
+        util --> game: display
+        deactivate
+        game -> ui: printLine(display)
+        activate ui
+        ui --> game
+        deactivate
+    end
+end
+game -> game: updateUserLines(userinput))
+activate game
+game --> game
+deactivate
+
+game --> command
+deactivate
+
+command -> game: gameSummary()
+activate game
+game -> game: handleSummary(...,"Time-Limited")
+activate game
+game --> game: summary
+deactivate
+game -> game: handleStorage(summary)
+activate game
+game --> game
+deactivate
+
+game --> command
+deactivate
+destroy game
+
+
+@enduml

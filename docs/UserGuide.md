@@ -1,23 +1,51 @@
 # User Guide
-* [Introduction](#introduction)
-* [Quick Start](#quick-start)
-* [Features](#features)
-* [FAQ](#faq)
-* [Command Summary](#command-summary)
+1. [Introduction](#1-introduction)
+2. [Quick Start](#2-quick-start)
+3. [Features](#3-features)
+   1. [Set Content](#31-set-content-content)
+   2. [Open Game](#32-open-game-game)
+      1. [Word Mode Game](#321-word-limit-game)
+      2. [Time Mode Game](#322-time-limit-game)
+   3. [View history](#33-view-past-records-history)
+   4. [Clear history](#34-clear-past-records-clear)
+   5. [Display Summary](#35-view-summary-of-game)
+   6. [Save Data](#36-saving-the-data)
+4. [FAQ](#faq)
+5. [Command Summary](#command-summary)
 
-## Introduction 
+## 1. Introduction 
 
-Typist is a CLI typing game. 
+Welcome to Typist! The ultimate CLI typing game!  
+Go to [Quick Start](#quick-start) to get started!
 
-## Quick Start
+## 2. Quick Start
 
-{Give steps to get started quickly}
+1. Ensure that you have Java 11 installed in your local environment.
+2. Down the latest version of `Typist` from [here](https://github.com/AY2122S1-CS2113-T13-4/tp/releases).
+3. Navigate to the folder containing the jar file and run `java -jar tp.jar`.
+4. If everything goes well, the command interface should display the following:
+```
+     | Typist - Version 2.0
+     | ===========================================================
+     |   ______            _      __
+     |  /_  __/_  ______  (_)____/ /_
+     |   / / / / / / __ \/ / ___/ __/
+     |  / / / /_/ / /_/ / (__  ) /_
+     | /_/  \__, / .___/_/____/\__/
+     |     /____/_/
+     | Welcome to Typist -- the ultimate cli typing game.
+     | Brought to you by -- AY2122S1-CS2113-T13-4.
+     | Manual:
+     | content: set the content
+     | game -time: start a new time game
+     | game -word: start a new word game
+     | history -g GAME_MODE [-n NUMBER_OF_RECORDS]: view past game records
+     | clear [-g GAME_MODE]: clear all game records
+     | bye: exit typist
+     | ===========================================================
+```
 
-1. Ensure that you have Java 11 or above installed. 
-2. Down the latest version of `Typist` from [here](http://link.to/duke).
-3. Navigate to the folder containing the jar file and run `java -jar tp.jar`
-
-## Features
+## 3. Features
 
 ### Notes about the command format:
 
@@ -37,10 +65,8 @@ ignored and the guide for that command will be displayed.
 e.g `history -g time -h -n 10` will be interpreted as `history -h`.
 * All parameters which do not conform to the command syntax will be ignored.  
 e.g.2 `clear -gtime` will be interpreted as `clear`
-### Usage
-### Open Game
 
-### Set Content: `content`
+### 3.1 Set Content: `content`
 Set the typing content before the game.  
 Format: `content` `1-3` `[optional]`
 
@@ -49,41 +75,118 @@ After entering `content`, user can type an integer from 1-3 to choose from follo
 1. Opening of famous books
 2. Wikipedia article
 3. Random sentence of custom length
-<!-- input example -->
+
+<!-- input example --> 
+
 Examples
 * `content` `1` `3`
+
 <!-- -->
 
-### Open Game: `game`
-Start a typing game.
-Format: `game GAME_MODE [-c]`
-* SET_CONTENT `-c` is optional, it allows user to set input content before game starts.
+### 3.2 Open Game: `game`
+Start a typing game.  
+Format: `game -GAME_MODE [GAME_LIMIT] [-c] [-sn]`
+
 * GAME_MODE 
-  * `-word` for game in Word Limit Mode 
-  * `-time` for game in Time Limit Mode
-* For Word Limit Game:
-  * Format: `game -word [-c]`
-  * Exit: `Exit` allows user to terminate the current game.
-* For Time Limit Game:
-  * Format: `game -time TIME_LIMIT [-sn] [-c]`
-  * START_NOW `-sn` allows user to start the game immediately without the "ready to start?" prompt.
+  * `word` for game in Word Limit Mode 
+  * `time` for game in Time Limit Mode
+#### 3.2.1 Word Limit Game
+  In a Word-Limit game, user needs to specify the total number of words 
+they want to type. Game will terminate once they finish typing the specified 
+number of words. 
+* Format: `game -word [WORD_LIMIT] [-c] [-sn]`
+* Example: `game -word`
+* ```
+  game -word 
+     | Enter how many words you want the game to run: 
+  10
+     | Timer will start once you entered "start":
+  start
+     | Lorem Ipsum is simply dummy
+  lorem ipsum is simply dummy
+     | Your progress:5/10
+  ```
+* Exit: `Exit` allows user to terminate the current game.
+
+#### 3.2.2 Time Limit Game
+In a Time-Limit Game, user needs to specify the duration 
+they want to type. Timer will stop once the duration is reached
+and terminates the game at the same time. 
+>**NOTE**: 
+> The time limit that user inputs needs to be a positive integer that represents time in seconds. 
+> It also needs to be multiple of 30. 
+* Format: `game -time [TIME_LIMIT] [-c] [-sn]`
+* Example: `game -time`  
+* ```
+  game -time
+     | Enter how long you want the game to run:
+  60
+     | Timer will start once you entered "start":
+  start
+     | Lorem Ipsum is simply dummy text of the printing and
+  ```
+
+#### Optional arguments
+* SET_CONTENT `-c`: allows user to set input content before game starts.
+* START_NOW `-sn`: allows timer to start immediately without the "start timer" prompt.
+* GAME_LIMIT: integer that sets the word/time limit of the game 
+ without the "enter limit" prompt.
+  > **NOTE**:
+  > if you want to specify GAME_LIMIT, it needs to be right after the GAME_MODE argument.
+  > If the GAME_LIMIT entered is invalid, game will still start but with the "enter limit" prompt.
+
 <!-- -->
-Examples
-* `game -time 30 -sn` 
-* `game -word -c`
+
+Example 1: `game -time 30`  
+Expected outcome: 
+```
+game -time 30
+     | Timer will start once you entered "start": 
+start
+     | Lorem Ipsum is simply dummy text of the printing and 
+```
+Example 2: `game -time 30 -sn`  
+Expected outcome:
+```
+game -time -sn 
+     | Enter how long you want the game to run: 
+30
+     | Lorem Ipsum is simply dummy text of the printing and 
+```
+Example 3: `game -word 20 -sn -c`  
+Expected outcome: 
+```
+(\ 
+\'\ 
+ \'\     __________  
+ / '|   ()_________)
+ \ '/    \ ~~~~~~~~ \
+   \       \ ~~~~~~   \
+   ==).      \__________\
+  (__)       ()__________)
+     | Content selection (input 0 to go back): 
+     | 1. Opening of famous books 
+     | 2. Wikipedia article 
+     | 3. Random sentence of custom length 
+     | Enter your selection:  
+```
 <!-- --> 
 
 
-### View past records: `history`
+### 3.3 View past records: `history`
 View past game records.  
 Format: `history -g GAME_MODE [-n NUMBER_OF_RECORDS] [-h]`
 * NUMBER_OF_RECORDS defaults to all records if not provided
 * Possible arguments for GAME_MODE are - `word` or `time`
-<!-- -->
+
+<!-- --> 
+
 Examples
 * `history -g time -n 10`
-* `history -g word`
-<!-- -->
+* `history -g word`  
+
+<!-- --> 
+
 Example of usage
 ```
 history -g time -n 1
@@ -100,16 +203,21 @@ Number of Correct Words: 30/30|100.00%
 Mistakes: No words typed wrongly.
 ==================================================================
 ```
-### Clear past records: `clear` 
+
+### 3.4 Clear past records: `clear` 
 Clear all past game records
 Format: `clear [-g GAME_MODE] [-h]`
 * GAME_MODE defaults to `all` if not provided
 * Possible arguments for GAME_MODE are - `word`, `time` or `all`
-<!-- -->
+
+<!-- --> 
+
 Examples
 * `clear -g time`
 * `clear`
-<!-- -->
+
+<!-- --> 
+
 Example of usage
 ```
 clear -g time
@@ -122,7 +230,7 @@ clear -g time
 Successfully cleared Time-limited game records.
 ```
 
-### View summary of game
+### 3.5 View summary of game
 View summary of a just-played game.
 Typists automatically generates and displays the summary after a game ends.   
 The summary consists of the following fields:
@@ -132,7 +240,9 @@ The summary consists of the following fields:
 * Number of wrong words and its percentage
 * Number of correct words and its percentage
 * Wrongly and not typed words (Mistakes)
-<!-- -->
+
+<!-- --> 
+
 Example of usage
 ```
    _____ __  ____  _____  ______    ______  __
@@ -147,7 +257,7 @@ Number of Wrong Words: 0/30|0.00%
 Number of Correct Words: 30/30|100.00%
 Mistakes: No words typed wrongly.
 ```
-### Saving the data
+### 3.6 Saving the data
 Typists automatically stores the game records (and any changes to them) into text files.
 
 
@@ -157,47 +267,8 @@ Gamers should not edit the data it will manipulate the integrity of the records.
 In the event where the data is edited and the wrong format is inputted, the file contents will be cleared, 
 hence losing all the game data.
 
-
-
-### `Keyword` - Describe action
-
-List of the keywords are shown below:
-
-`content`-Set the content
-
-`game -word`-Enter a word-limited game mode
-
-`game -word -c`-Enter a word-limited game mode with content setting
-
->Exit word-limited game mode command: `Exit`
-
-`time`-Enter a time-limited game mode
-
-`error`-Enter a error detecting game mode
-
-`bye`-Exit the program.
-
 ### Showing summary of a game
 Statistics of game is shown automatically after a game is finished.
-
-## Example of usage:
-
-```
-game -word
-     | Enter how many words you want the game to run: 
-5
-     | lorem ipsum is simply dummy 
-lorem ipsum is simply dummy
-     | Your progress:5/5
-```
-```
-game -time 30 -sn
-     | lorem ipsum is simply dummy text of the printing and 
-lorem ipsum is simply dummy text of the printing and 
-     | typesetting imply dummy text of the printing and typesetting industry 
-typesetting imply dummy text of the printing and typesetting industry
-     | Timer's UP!
-```
 
 
 
@@ -209,8 +280,11 @@ typesetting imply dummy text of the printing and typesetting industry
 
 ## Command Summary
 
-| Feature  | Command |
+| Command  | Action |
 | ------------- | ------------- | 
-| Start Word Limit Game| `game -word [-c]` | 
-| Start Time Limit Game | `game -time TIME_LIMIT [-sn] [-c]`
-| Get History | `history -h`|
+|`content`| Set the content
+|`game -word [WORD_LIMIT] [-sn] [-c]` | Start a word-limited game
+|`game -time [TIME_LIMIT] [-sn] [-c]` | Start a time-limited game 
+|`history -h` | Get history
+|`history -g GAME_MODE [-n NUMBER_OF_RECORDS] [-h]` | Clear history
+|`bye`| Exit the program

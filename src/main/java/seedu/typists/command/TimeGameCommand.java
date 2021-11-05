@@ -16,12 +16,11 @@ public class TimeGameCommand extends GameCommand {
 
     @Override
     public Game createGame(ArrayList<String> args, boolean isReady, boolean setContent) {
-
+        if (setContent) {
+            content.setContent();
+        }
         try {
             int timeInSeconds = getNumber(args, TIME_SIGNIFIER);
-            if (setContent) {
-                content.setContent();
-            }
             return new TimeModeGame(content.getContent(), LINE_LENGTH, timeInSeconds, isReady);
         } catch (NumberFormatException | IncompleteCommandException | InvalidCommandException e) {
             return new TimeModeGame(content.getContent(), LINE_LENGTH, isReady);

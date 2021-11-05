@@ -15,11 +15,11 @@ public class WordGameCommand extends GameCommand {
     @Override
     public Game createGame(ArrayList<String> args, boolean isReady, boolean setContent) {
         //ui.printKeyBoard
+        if (setContent) {
+            content.setContent();
+        }
         try {
             int wordLimit = getNumber(args, WORD_SIGNIFIER);
-            if (setContent) {
-                content.setContent();
-            }
             return new WordLimitGame(content.getContent(), 5, wordLimit, isReady);
         } catch (InvalidCommandException e) {
             //won't come here.
