@@ -1,7 +1,6 @@
 package seedu;
 
 import org.junit.jupiter.api.Test;
-import seedu.typists.game.TimeModeGame;
 
 public class DataProcessorTest {
     private static final String TEST_TXT = " testing testing testing";

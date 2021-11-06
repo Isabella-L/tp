@@ -1,7 +1,7 @@
 package seedu;
 
 import org.junit.jupiter.api.Test;
-import seedu.typists.exception.ExceedRangeException;
+import seedu.typists.common.exception.ExceedRangeException;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,9 +1,9 @@
-package seedu.typists.parser;
+package seedu.typists.common;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import seedu.typists.exception.InvalidStringInputException;
+import seedu.typists.common.exception.InvalidStringInputException;
 
 public class StringParser {
 

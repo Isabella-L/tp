@@ -36,5 +36,4 @@ public class GameUi extends TextUi {
                 + n + " words."
         );
     }
-
 }

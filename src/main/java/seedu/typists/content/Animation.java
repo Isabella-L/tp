@@ -18,30 +18,6 @@ public class Animation {
         lastLine = line;
     }
 
-    private byte animWait;
-
-    public void resetAnimWait() {
-        animWait = 1;
-    }
-
-    public void animateWait(String s) {
-        switch (animWait) {
-        case 1:
-            print("[ \\ ] " + s);
-            break;
-        case 2:
-            print("[ | ] " + s);
-            break;
-        case 3:
-            print("[ / ] " + s);
-            break;
-        default:
-            animWait = 0;
-            print("[ - ] " + s);
-        }
-        animWait++;
-    }
-
     private byte animLeft;
     private byte animRight;
 

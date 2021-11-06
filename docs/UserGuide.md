@@ -115,6 +115,7 @@ and terminates the game at the same time.
 >**NOTE**: 
 > The time limit that user inputs needs to be a positive integer that represents time in seconds. 
 > It also needs to be multiple of 30. 
+
 * Format: `game -time [TIME_LIMIT] [-c] [-sn]`
 * Example: `game -time`  
 * ```
@@ -124,12 +125,19 @@ and terminates the game at the same time.
      | Timer will start once you entered "start":
   start
      | Lorem Ipsum is simply dummy text of the printing and
+  Lorem Ipsum is simply dummy text of the printing and
+     | Timer's Up!
   ```
+
+    **Exceeding Time:**  
+    When you are at the last sentence. Even though Timer is up, the game will wait
+    until you finish the last sentence to terminate. You will be informed of the exceeding time,
+    and it will count towards your game summary.
 
 #### Optional arguments
 * SET_CONTENT `-c`: allows user to set input content before game starts.
 * START_NOW `-sn`: allows timer to start immediately without the "start timer" prompt.
-* GAME_LIMIT: integer that sets the word/time limit of the game 
+* GAME_LIMIT: a positive integer that sets the word/time limit of the game 
  without the "enter limit" prompt.
   > **NOTE**:
   > if you want to specify GAME_LIMIT, it needs to be right after the GAME_MODE argument.
@@ -267,11 +275,6 @@ Gamers should not edit the data it will manipulate the integrity of the records.
 In the event where the data is edited and the wrong format is inputted, the file contents will be cleared, 
 hence losing all the game data.
 
-### Showing summary of a game
-Statistics of game is shown automatically after a game is finished.
-
-
-
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -284,7 +287,7 @@ Statistics of game is shown automatically after a game is finished.
 | ------------- | ------------- | 
 |`content`| Set the content
 |`game -word [WORD_LIMIT] [-sn] [-c]` | Start a word-limited game
-|`game -time [TIME_LIMIT] [-sn] [-c]` | Start a time-limited game 
-|`history -h` | Get history
+|`game -time [TIME_LIMIT] [-sn] [-c]` | Start a time-limited game
 |`history -g GAME_MODE [-n NUMBER_OF_RECORDS] [-h]` | Clear history
+|`clear` | Clear history
 |`bye`| Exit the program

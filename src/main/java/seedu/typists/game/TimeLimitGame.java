@@ -1,7 +1,7 @@
 package seedu.typists.game;
 
-import seedu.typists.exception.ExceedRangeException;
-import seedu.typists.exception.InvalidCommandException;
+import seedu.typists.common.exception.ExceedRangeException;
+import seedu.typists.common.exception.InvalidCommandException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,12 +15,12 @@ import static seedu.typists.common.Utils.getWordLineFromStringArray;
 import static seedu.typists.common.Utils.isValidTime;
 
 
-public class TimeModeGame extends Game {
+public class TimeLimitGame extends Game {
     protected final ArrayList<String> wordLists;
     protected double gameTime;
     protected int currentRow;
 
-    public TimeModeGame(String targetWordSet, int wordsPerLine, boolean isReady) {
+    public TimeLimitGame(String targetWordSet, int wordsPerLine, boolean isReady) {
         super(wordsPerLine, isReady);
         assert targetWordSet != null;
         this.wordLists = splitStringIntoWordList(targetWordSet);
@@ -28,7 +28,7 @@ public class TimeModeGame extends Game {
         this.limit = getTimeLimit();
     }
 
-    public TimeModeGame(String targetWordSet, int wordsPerLine, int timeInSeconds, boolean isReady) {
+    public TimeLimitGame(String targetWordSet, int wordsPerLine, int timeInSeconds, boolean isReady) {
         super(wordsPerLine, timeInSeconds, isReady);
         assert targetWordSet != null;
         this.wordLists = splitStringIntoWordList(targetWordSet);
@@ -36,10 +36,9 @@ public class TimeModeGame extends Game {
     }
 
     public int getTimeLimit() {
-        Scanner in = new Scanner(System.in);
         ui.printScreen("Enter how long you want the game to run: ");
         try {
-            int n = Integer.parseInt(in.nextLine());
+            int n = Integer.parseInt(ui.readCommand());
             return isValidTime(n);
         } catch (NumberFormatException e) {
             ui.printScreen("Invalid Number!");

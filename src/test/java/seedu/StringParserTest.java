@@ -1,8 +1,8 @@
 package seedu;
 
 import org.junit.jupiter.api.Test;
-import seedu.typists.exception.InvalidStringInputException;
-import seedu.typists.parser.StringParser;
+import seedu.typists.common.exception.InvalidStringInputException;
+import seedu.typists.common.StringParser;
 
 import java.util.ArrayList;
 

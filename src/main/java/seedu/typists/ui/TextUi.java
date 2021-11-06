@@ -1,10 +1,7 @@
 package seedu.typists.ui;
 
-import seedu.typists.common.Error;
 import seedu.typists.content.Animation;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -17,13 +14,8 @@ import static seedu.typists.common.Messages.LOGO;
 import static seedu.typists.common.Messages.MESSAGE_ACKNOWLEDGE;
 import static seedu.typists.common.Messages.MESSAGE_HELP;
 import static seedu.typists.common.Messages.MESSAGE_WELCOME;
-import static seedu.typists.common.Messages.SUMMARY;
 
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -37,9 +29,10 @@ public class TextUi {
     private static final String LINE_PREFIX = "     | ";
     private static final String LS = lineSeparator();
 
-
-    //get current timestamp
-    //unused because it interferes with the EXPECTED.TXT in runtest
+    /** Get current timestamp.
+     * Unused because it interferes with the EXPECTED.TXT in runtest
+     * @return current time in yyyy-mm-dd hh:mm:ss format
+     */
     public String getTimeStamp() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         return timeFormatter.format(timestamp);
@@ -139,43 +132,4 @@ public class TextUi {
         }
         System.out.println("");
     }
-
-    public void showAnimatedWordLimitSummary(int errorWordCount, int totalWordTyped) throws InterruptedException {
-        viewAnimateRight("Wrong Words: " + errorWordCount + "/" + totalWordTyped);
-    }
-
-    public void showAnimatedSentenceErrorRateSummary(double sentenceErrorRate) throws InterruptedException {
-        viewAnimateRight("Sentence Error Rate: " + sentenceErrorRate);
-    }
-
-    public void showAnimatedError(ArrayList<String> content,
-                                  ArrayList<String> typed,
-                                  int totalWord)
-            throws InterruptedException {
-        TextUi ui = new TextUi();
-        out.println(SUMMARY);
-        Error error = new Error();
-
-        ui.showAnimatedWordLimitSummary(
-                error.wrongWordCount(content, typed),
-                totalWord
-        );
-
-        double sentenceErrorRate = error.sentenceErrorRate(content, typed);
-        BigDecimal bd = new BigDecimal(sentenceErrorRate);
-        bd = bd.round(new MathContext(3));
-        double rounded = bd.doubleValue();
-        ui.showAnimatedSentenceErrorRateSummary(rounded);
-    }
-
-    public void showAnimatedSummary(int errorWordCount, double errorPercentage, double wpm,
-                                    int totalWordTyped, double gameTime) throws InterruptedException {
-        out.print(SUMMARY + '\n');
-        viewAnimateRight("Wrong Words: " + errorWordCount + "/" + totalWordTyped);
-        viewAnimateRight("Error Percentage: " + String.format("%.2f", errorPercentage));
-        viewAnimateRight("WPM: " + String.format("%.2f", wpm));
-        viewAnimateRight("Total Time taken for the game: " + String.format("%.2f", gameTime) + " seconds");
-    }
-
-
 }

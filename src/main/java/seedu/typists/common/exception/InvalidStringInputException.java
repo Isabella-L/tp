@@ -1,4 +1,4 @@
-package seedu.typists.exception;
+package seedu.typists.common.exception;
 
 public class InvalidStringInputException extends Exception {
     @Override

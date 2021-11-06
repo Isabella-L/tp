@@ -1,7 +1,7 @@
 package seedu.typists.command;
 
-import seedu.typists.exception.IncompleteCommandException;
-import seedu.typists.exception.InvalidCommandException;
+import seedu.typists.common.exception.IncompleteCommandException;
+import seedu.typists.common.exception.InvalidCommandException;
 import seedu.typists.game.Game;
 import seedu.typists.game.WordLimitGame;
 

@@ -1,4 +1,4 @@
-package seedu.typists.exception;
+package seedu.typists.common.exception;
 
 public class InvalidCommandException extends Exception {
     public InvalidCommandException(String errorMessage) {

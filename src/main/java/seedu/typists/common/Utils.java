@@ -1,15 +1,12 @@
 package seedu.typists.common;
 
-import seedu.typists.exception.ExceedRangeException;
-import seedu.typists.exception.FaultyInputException;
-import seedu.typists.exception.InvalidCommandException;
+import seedu.typists.common.exception.ExceedRangeException;
+import seedu.typists.common.exception.InvalidCommandException;
 import seedu.typists.ui.TextUi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Utility methods.

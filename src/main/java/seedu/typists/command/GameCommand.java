@@ -1,15 +1,12 @@
 package seedu.typists.command;
 
-import seedu.typists.exception.IncompleteCommandException;
-import seedu.typists.exception.InvalidCommandException;
+import seedu.typists.common.exception.IncompleteCommandException;
+import seedu.typists.common.exception.InvalidCommandException;
 import seedu.typists.game.Game;
-import seedu.typists.game.WordLimitGame;
 import seedu.typists.ui.GameUi;
 
 import java.util.ArrayList;
 
-import static seedu.typists.Main.content;
-import static seedu.typists.Main.uiBot;
 import static seedu.typists.Main.LINE_LENGTH;
 
 public abstract class GameCommand implements Command {

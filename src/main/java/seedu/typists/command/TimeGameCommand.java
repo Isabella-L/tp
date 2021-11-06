@@ -1,9 +1,9 @@
 package seedu.typists.command;
 
-import seedu.typists.exception.IncompleteCommandException;
-import seedu.typists.exception.InvalidCommandException;
+import seedu.typists.common.exception.IncompleteCommandException;
+import seedu.typists.common.exception.InvalidCommandException;
 import seedu.typists.game.Game;
-import seedu.typists.game.TimeModeGame;
+import seedu.typists.game.TimeLimitGame;
 
 import java.util.ArrayList;
 
@@ -21,9 +21,9 @@ public class TimeGameCommand extends GameCommand {
         }
         try {
             int timeInSeconds = getNumber(args, TIME_SIGNIFIER);
-            return new TimeModeGame(content.getContent(), LINE_LENGTH, timeInSeconds, isReady);
+            return new TimeLimitGame(content.getContent(), LINE_LENGTH, timeInSeconds, isReady);
         } catch (NumberFormatException | IncompleteCommandException | InvalidCommandException e) {
-            return new TimeModeGame(content.getContent(), LINE_LENGTH, isReady);
+            return new TimeLimitGame(content.getContent(), LINE_LENGTH, isReady);
         }
     }
 

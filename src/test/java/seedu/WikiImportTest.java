@@ -2,7 +2,7 @@ package seedu;
 
 import org.junit.jupiter.api.Test;
 import seedu.typists.content.WikiImport;
-import seedu.typists.exception.InvalidArticleException;
+import seedu.typists.common.exception.InvalidArticleException;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;

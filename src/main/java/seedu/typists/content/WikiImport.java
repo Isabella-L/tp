@@ -1,7 +1,7 @@
 package seedu.typists.content;
 
 import org.fastily.jwiki.core.Wiki;
-import seedu.typists.exception.InvalidArticleException;
+import seedu.typists.common.exception.InvalidArticleException;
 
 /**
  * Imports the first paragraph of a text from Wikipedia.

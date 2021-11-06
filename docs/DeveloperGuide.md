@@ -1,6 +1,9 @@
-
 # Developer Guide
+* Table of Contents
+  {:toc}
+
 * [Acknowledgements](#acknowledgements)
+* [Setting Up, getting started](#setting-up-getting-started)
 * [Design](#design)
   * [Architecture](#architecture)
 * [Implementation](#implementation)
@@ -11,16 +14,59 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+{list here sources of all reused/adapted ideas, code, documentation, 
+and third-party libraries -- include links to the original source as well}
 * https://www.baeldung.com/java-testing-system-out-println
 * https://github.com/fastily/jwiki
 
-
-
+## Setting Up, getting started
+{Instruction to set up project in intellij}
 
 ## Design
+
+> :bulb: **Tip:** The `.puml` files used to create diagrams in this document 
+> can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. 
+
 ### Architecture
 (Some architecture diagram)
+The Architecture diagram above explains the high-level design of the Typists app.  
+Given below is a quick overview of main components and how they interact with each other.
+
+**Main Components of the architecture**
+The `Main` class is the entry point of Typist. It is responsible for parsing and running various user's command.
+
+The other core components of Typist:
+* `ui`: The Ui of the app.
+* `command`: Consists of `CommandFactory` which parses user inputs, and various `command` objects.
+* `common`: A collection of classes used by multiple other components.
+* `content`: Holder for the content and logic for `content` command
+* `game`: Game, game summary and game record executor.
+* `storage`: Game storage executor.
+
+### Command Component
+
+The Command Component contains different types of command actions. 
+The `Command Factory` is responsible for parsing the user input and returning the corresponding command class to be executed.
+
+* When `Main` calls the `.run(args)` method of a `Command` object, ...
+
+### Game Component
+
+**How the Game Component works:**
+* When `.run(args)` of the `GameCommand` object is called, a corresponding `Game` object is created. 
+Immediately after, the `.run()` method of `Game` will be called, followed by `.gameSummary()`. 
+
+For instance:
+* When the `.run(args)` of `TimeGameCommand` is called, a `TimeLimitGame` object is created. 
+* Then, `.run()` method of `TimeLimitCommand` is executed, a Time Limit Game will start running 
+until game ends(i.e. timer's up).
+* `.gameSummary()` method will then generate the summary of the game. 
+
+### TimeLimitGame Class
+Sequence Diagram for Time Mode Game:
+<img src="https://user-images.githubusercontent.com/69776265/139190231-eb648329-517b-42dc-a088-fbce5c93c616.png" width="574" />
+
+The Sequence Diagram below illustrates the working process of the `TimeModeGame` class.
 
 ## Implementation
 
@@ -41,7 +87,7 @@ There are 3 types:
 
 The following UML diagram illustrates the way content selection works in the program.
 
-![](uml/Content.png)
+![](diagrams/Content.png)
 
 There only exists one private content string for all sessions. Each time a set method is called, the string is changed 
 depending on the choices that the user made throughout the process. Whenever the user starts a game, the getContent() 
@@ -53,11 +99,7 @@ Once the CommandFactory reads a 'word' command, a word limit game will begin.
 
 Gonna to change this .puml diagram later - zhansen
 
-![](uml/WordLimitMode.png)
-
-### Time Limit Game
-Sequence Diagram for Time Mode Game:
-![image](https://user-images.githubusercontent.com/69776265/139190231-eb648329-517b-42dc-a088-fbce5c93c616.png)
+![](diagrams/WordLimitMode.png)
 
 ### \[Proposed\] View Statistics feature
 #### \[Proposed Implementation\]
@@ -82,24 +124,24 @@ Step 2: The user executes `view -m best -g time -n 4` to view his/her best stati
 
 Step 3: A ViewCommand object is then instantiated.  
 
-![Alt text](uml/ViewStatistics-1.drawio.svg)
+![Alt text](diagrams/ViewStatistics-1.drawio.svg)
 
 Step 4. ViewCommand calls the retrieveStatistics() method of StatisticsManager.  
-![Alt text](uml/ViewStatistics-2.drawio.svg)
+![Alt text](diagrams/ViewStatistics-2.drawio.svg)
 
 Step 5: StatisticsManager creates a GameRecordsManager object.
 * The constructor of GameRecordsManager calls the readGameRecords() method of the Storage class to retrieve the gamer's past game records from the text files.
 <!-- -->
-![Alt text](uml/ViewStatistics-3.drawio.svg)  
+![Alt text](diagrams/ViewStatistics-3.drawio.svg)  
 Step 6. StatisticsManager then calls getGamesRecords() method of GameRecordsManager() and self-invokes calculateBestStatistics().
 * Calculated statistics is returned.
 
 Step 7. ViewCommand calls the displayStatistics() method of the ViewCommandUi class to display the statistics.
-![Alt test](uml/ViewStatistics-4.drawio.svg)
+![Alt test](diagrams/ViewStatistics-4.drawio.svg)
 
 
 The following sequence diagram shows how the above scenario is executed.
-![Alt test](uml/ViewStatistics-5.drawio.svg)
+![Alt test](diagrams/ViewStatistics-5.drawio.svg)
 
 
 
@@ -114,14 +156,13 @@ Single Responsibility Principle.
 ## Product scope
 Our product is a typing game, intent to provide enjoyment for people who are familiar with the CML.
 
-
 ### Target user profile
 
-{Describe the target user profile}
+The target user profile includes bored people who are looking for a fun way to entertain themselves while working on the command line.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+It solves the lack of entertainment alternatives on the CLI.
 
 ## User Stories
 
@@ -136,12 +177,6 @@ Our product is a typing game, intent to provide enjoyment for people who are fam
 |v2.0|gamer|view my past records|see how I have improved over time|
 |v2.0|gamer|clear my past records|have a fresh start|
 |v2.0|typist|see the words I typed wrongly after I've finished a game|know which words I have to practice more|
-
-## Non-Functional Requirements
-
-{Give non-functional requirements}
-### Animation
-
 
 ## Glossary
 

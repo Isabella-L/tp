@@ -1,6 +1,6 @@
 package seedu.typists.command;
 
-import seedu.typists.exception.InvalidCommandException;
+import seedu.typists.common.exception.InvalidCommandException;
 import seedu.typists.game.GameRecordsManager;
 import seedu.typists.ui.ClearCommandUi;
 
