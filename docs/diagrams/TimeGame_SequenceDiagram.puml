@@ -1,0 +1,66 @@
+@startuml
+
+box TimeLimitGame
+participant ":TimeLimitGame" as game
+participant "ui:GameUi" as ui
+endBox
+participant ":Util" as util
+participant "in:Scanner" as scanner
+
+[-> game: runGame()
+activate game
+
+create scanner
+game --> scanner: <<create>>
+
+game -> game: getTimeNow()
+activate game
+game --> game: beginTime
+deactivate game
+
+loop until TimeOver
+    alt Time Not Over
+    game -> game: displayLines(currentRow)
+        activate game
+            game -> util: getDisplayLines(...,currentRow)
+            activate util
+            util --> game
+            deactivate util
+        game --> game
+        deactivate game
+
+        game -> scanner: nextLine()
+        activate scanner
+        scanner --> game: line
+        deactivate scanner
+    else Time Over
+end
+
+game -> game: updateUserLines(inputs)
+activate game
+game --> game
+deactivate game
+
+game -> game: endGame()
+activate game
+game -> ui: printEnd("Time game end")
+activate ui
+ui --> game
+deactivate ui
+opt Time Overshoot
+    game -> ui: printOvershoot(overshoot time)
+    activate ui
+    ui --> game
+    deactivate ui
+end
+
+game --> game
+deactivate game
+
+[<-- game
+deactivate game
+
+<[hidden]- game
+destroy game
+
+@enduml

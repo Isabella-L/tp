@@ -12,7 +12,7 @@ import static seedu.typists.common.Messages.KEYBOARD;
 import static seedu.typists.common.Messages.LETTER;
 import static seedu.typists.common.Messages.LOGO;
 import static seedu.typists.common.Messages.MESSAGE_ACKNOWLEDGE;
-import static seedu.typists.common.Messages.MESSAGE_HELP;
+import static seedu.typists.common.Messages.MESSAGE_MAN;
 import static seedu.typists.common.Messages.MESSAGE_WELCOME;
 
 
@@ -47,7 +47,7 @@ public class TextUi {
                 LOGO,
                 MESSAGE_WELCOME,
                 MESSAGE_ACKNOWLEDGE,
-                MESSAGE_HELP,
+                MESSAGE_MAN,
                 DIVIDER
         );
     }

@@ -68,13 +68,34 @@ public class Messages {
 
     public static final String MESSAGE_WELCOME = "Welcome to Typist -- the ultimate cli typing game.";
     public static final String MESSAGE_ACKNOWLEDGE = "Brought to you by -- AY2122S1-CS2113-T13-4.";
+    public static final String MESSAGE_MAN = "man: check man page to get started!";
     public static final String MESSAGE_HELP = "Manual:\n"
             + "content: set the content\n"
             + "game -time: start a new time game\n"
             + "game -word: start a new word game\n"
             + "history -g GAME_MODE [-n NUMBER_OF_RECORDS]: view past game records\n"
             + "clear [-g GAME_MODE]: clear all game records\n"
+            + "man [COMMAND]: view the man page for a the command\n"
             + "bye: exit typist";
+
+    public static final String MESSAGE_HELP_HISTORY = "View past game records.\n"
+            + "Command format: 'history -g GAME_MODE [-n NUMBER_OF_RECORDS]'\n"
+            + "Input \"history -h\" for complete detail";
+
+    public static final String MESSAGE_HELP_GAME = "Start a typing game.\n"
+            + "Command format: game -GAME_MODE [GAME_LIMIT] [-c] [-sn]\n"
+            + "GAME_MODE:\n"
+            + "     time: time-limited (aim to type as much as possible in a limited time)\n"
+            + "     word: word-limited (aim to type a chosen number of words as fast as possible)\n"
+            + "[GAME_LIMIT]: number of words/time you want the game to run.\n"
+            + "[-c]: override current content \n"
+            + "[-sn]: start the timer immediately (once all conditionals are specified by user)";
+
+    public static final String MESSAGE_HELP_CONTENT = "Set the typing content before the game.\n"
+            + "Command format: content 1-3";
+
+    public static final String MESSAGE_HELP_CLEAR = "Clear all past game records.\n"
+            + "Command format: clear [-g GAME_MODE] [-h]";
 
     public static String MESSAGE_TIME_GAME_END = "Timer's UP!";
 

@@ -1,26 +1,23 @@
 # Developer Guide
-* Table of Contents
-  {:toc}
 
 * [Acknowledgements](#acknowledgements)
 * [Setting Up, getting started](#setting-up-getting-started)
 * [Design](#design)
   * [Architecture](#architecture)
+  * [Command Component](#command-component)
+  * [Game Component](#game-component)
+  * [Content Component](#choose-the-game-content)
 * [Implementation](#implementation)
 * [Product Scope](#product-scope)
 * [User Stories](#user-stories)
-* [Non-functional Requirements](#non-functional-requirements)
 * [Glossary](#glossary)
+* [Manual Testing](#instructions-for-manual-testing)
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, 
-and third-party libraries -- include links to the original source as well}
 * [reference code for testing System.out.println()](https://www.baeldung.com/java-testing-system-out-println)
-* https://github.com/fastily/jwiki
-
-## Setting Up, getting started
-{Instruction to set up project in intellij}
+* [reference code for accessing wiki](https://github.com/fastily/jwiki)
+* [SE-EDU AB3 Developer Guide Format](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 ## Design
 
@@ -29,7 +26,7 @@ and third-party libraries -- include links to the original source as well}
 
 ### Architecture
 
-![](diagrams/arch.png)
+![](diagrams/archdiagram.png)
 
 The Architecture diagram above explains the high-level design of the Typists app.  
 Given below is a quick overview of main components and how they interact with each other.
@@ -51,41 +48,54 @@ The other core components of Typist:
 The `Command` component implements the Factory Design Pattern to parse user commands.
 
 Here’s a (partial) class diagram of the `Command` component:  
-<img src="diagrams/command.puml" width="560">
+
+![](images/command.png)
 
 How the `Command` component works:
 1. Typists `Main` calls upon the `CommandFactory` class to parse the user input.
 2. The `CommandFactory` returns a `Command` object (more precisely, an object that implements it e.g., `GameCommand`).
 3. `Main` will then execute the `Command` by calling `.run(args)` method of the `Command`.
 
-The Sequence Diagram below illustrates the interactions between `main` and `Command` component for the `getCommand("game -time")` input.
-
 ### Game Component
 
 **How the Game Component works:**
-* When `.run(args)` of the `GameCommand` object is called, a corresponding `Game` object is created. 
-Immediately after, the `.run()` method of `Game` will be called, followed by `.gameSummary()`. 
+* The `Game` component consists of 2 parts: 
+  1. The actual game execution classes;
+  2. and the game record classes
+* For 1: When for a `Game` object, the `.runGame()` is the main method that runs the game until termination and 
+the`.gameSummary()` displays the summary and stores game data. 
+* For 2: Game Record Management, which interacts with record storage, will be explained with further detail in [later section](#proposed-view-statistics-feature).
 
 For instance:
-* When the `.run(args)` of `TimeGameCommand` is called, a `TimeLimitGame` object is created. 
+When game is running from the CLI: 
+* The `.run(args)` of `TimeGameCommand` is called, a `TimeLimitGame` object is created. 
 * Then, `.run()` method of `TimeLimitCommand` is executed, a Time Limit Game will start running 
 until game ends(i.e. timer's up).
 * `.gameSummary()` method will then generate the summary of the game. 
+
+The (partial) Class Diagram bellow illustrates the structure of `game` component:
+{some class diagram}
+
+There are 2 constructors in `TimeModeGame` class, each handling different number of parameters specified.
+
+As from the diagram, `WordLimitGame` and `TimeLimitGame`, the 2 major game execution classes inherits from the `Game` Class.
+However, their implementations and functionality varies on many parts due to them being 2 different games. 
+Hence, The section below explains in greater detail how [Word Mode](#word-limit-game) and [Time Mode](#time-limit-game) of Typist game are implemented.  
+
+
 ### Word Limit Game
 
-Sequence Diagram for Time Mode Game:
-![](diagrams/WordLimitMode.png)
+Sequence Diagram for Word Mode Game:  
+
+![](images/WordLimitMode.png)
+
 The Sequence Diagram above illustrates the working process of the `WordLimitGame` class.
 
-### TimeLimitGame Class
-Sequence Diagram for Time Mode Game:
-<img src="https://user-images.githubusercontent.com/69776265/139190231-eb648329-517b-42dc-a088-fbce5c93c616.png" width="574" />
+### Time Limit Game
 
-The Sequence Diagram above illustrates the working process of the `TimeLimitGame` class.
+The Sequence Diagram below illustrates the working process of the `TimeLimitGame` when the `.runGame` method is called:  
 
-## Implementation
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+<img src="images/TimeGame_SequenceDiagram.png" height="576"/>
 
 ### Choose the game content
 
@@ -102,13 +112,13 @@ There are 3 types:
 
 The following UML diagram illustrates the way content selection works in the program.
 
-![](diagrams/Content.png)
+![](images/Content.png)
 
 There only exists one private content string for all sessions. Each time a set method is called, the string is changed 
 depending on the choices that the user made throughout the process. Whenever the user starts a game, the getContent() 
 method is called and the text is set accordingly.
 
-
+## Implementation
 
 ### \[Proposed\] View Statistics feature
 #### \[Proposed Implementation\]
@@ -189,9 +199,28 @@ It solves the lack of entertainment alternatives on the CLI.
 
 ## Glossary
 
-* *glossary item* - Definition
+* Mainstream OS: Windows, Linux, Unix, OS-X 
+* Time Limit Game: A game that ends only when timer stops.
+* Word Limit Game: A game that ends only when all the words has been inputted.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
+### Launch and Shutdown
+1. Initial Launch
+   1. Download the jar file and copy into an empty folder
+   2. Double-click the jar file.  
+      Expected: shows the starting page and current version of Typist
+2. Obtaining past game records 
+   1. Exit the game through command `bye`.
+   2. Re-launch the app by double-clicking hte jar file.  
+      Expected: The record of previous games is retained. 
+   
+### Opening a game
+1. Opening a game with optional operands
+   1. Test case: `game -time 0`  
+      Expected: A warning message about error on limit input is shown. 
+      The game will still start as if no time limit is specified. 
+      User will be asked to "Enter how long you want the game to run: ".
+   2. Test case: `game -time 30 -sn`
+      Expected: A game will start running. Timer starts immediately together the first line of sentence to be typed is displayed.
+      

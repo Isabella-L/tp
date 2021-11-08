@@ -10,9 +10,6 @@ package Storage {
 package Game {
 }
 
-package Content {
-}
-
 package Command {
 Class CommandFactory
 
@@ -39,14 +36,12 @@ CommandFactory ..> ExitCommand
 CommandFactory ..> GameCommand
 CommandFactory ..> HistoryCommand
 
-GameCommand --> Game
+GameCommand -> Game
 TimeGameCommand --> Game
 WordGameCommand --> Game
 
 HistoryCommand --> Storage
 ClearCommand --> Storage
-
-ContentCommand -up> Content
 
 ClearCommand ..|> Command
 ContentCommand ..|> Command

@@ -1,6 +1,5 @@
 package seedu.typists.command.commands;
 
-import seedu.typists.command.commands.Command;
 import seedu.typists.common.exception.IncompleteCommandException;
 import seedu.typists.common.exception.InvalidCommandException;
 import seedu.typists.game.Game;
