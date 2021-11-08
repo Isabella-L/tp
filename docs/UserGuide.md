@@ -25,6 +25,7 @@ Go to [Quick Start](#quick-start) to get started!
 2. Down the latest version of `Typist` from [here](https://github.com/AY2122S1-CS2113-T13-4/tp/releases).
 3. Navigate to the folder containing the jar file and run `java -jar tp.jar`.
 4. If everything goes well, the command interface should display the following:
+<div style="page-break-after: always;"></div>
 ```
      | Typist - Version 2.0
      | ===========================================================
@@ -320,5 +321,6 @@ Example: `man clear`
 |`game -word [WORD_LIMIT] [-sn] [-c]` | Start a word-limited game
 |`game -time [TIME_LIMIT] [-sn] [-c]` | Start a time-limited game
 |`history -g GAME_MODE [-n NUMBER_OF_RECORDS] [-h]` | View past game records
-|`clear` | Clear past game records
+|`clear [-g GAME_MODE] [-h]` | Clear past game records
+|`man [COMMAND]`| View man pages of command
 |`bye`| Exit the program
