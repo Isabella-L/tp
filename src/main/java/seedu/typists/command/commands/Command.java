@@ -1,4 +1,4 @@
-package seedu.typists.command;
+package seedu.typists.command.commands;
 
 import java.util.ArrayList;
 

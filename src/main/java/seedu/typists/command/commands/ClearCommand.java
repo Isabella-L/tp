@@ -1,4 +1,4 @@
-package seedu.typists.command;
+package seedu.typists.command.commands;
 
 import seedu.typists.common.exception.InvalidCommandException;
 import seedu.typists.game.GameRecordsManager;

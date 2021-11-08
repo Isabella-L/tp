@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Storage {
+}
+
+package Game {
+}
+
+package Content {
+}
+
+package Command {
+Class CommandFactory
+
+package commands #F4F6F6{
+Class ClearCommand
+Class ContentCommand
+Class ExitCommand
+Class HistoryCommand
+Class "{abstract}\nGameCommand" as GameCommand
+Class TimeGameCommand
+Class WordGameCommand
+
+Interface Command <<Interface>>
+}
+}
+
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> CommandFactory
+
+CommandFactory ..> ClearCommand
+CommandFactory ..> ContentCommand: creates >
+CommandFactory ..> ExitCommand
+CommandFactory ..> GameCommand
+CommandFactory ..> HistoryCommand
+
+GameCommand --> Game
+TimeGameCommand --> Game
+WordGameCommand --> Game
+
+HistoryCommand --> Storage
+ClearCommand --> Storage
+
+ContentCommand -up> Content
+
+ClearCommand ..|> Command
+ContentCommand ..|> Command
+ExitCommand ..|> Command
+GameCommand ..|> Command
+HistoryCommand ..|> Command
+
+TimeGameCommand -up-|> GameCommand
+WordGameCommand -up-|> GameCommand
+
+
+
+@enduml

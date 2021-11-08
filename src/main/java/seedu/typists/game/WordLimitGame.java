@@ -8,8 +8,6 @@ import seedu.typists.ui.TextUi;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
-
 
 import static seedu.typists.common.Utils.getDisplayLinesWithoutNull;
 import static seedu.typists.common.Utils.getWordLineFromStringArray;
@@ -44,10 +42,6 @@ public class WordLimitGame extends Game {
             e.printStackTrace();
         }
         ui.printLine(displayed);
-    }
-
-    public int getTotalSentence() {
-        return eachWord.size();
     }
 
     public int getWordLimit() {

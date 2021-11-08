@@ -27,11 +27,9 @@ public class Storage {
     private static final Logger LOGGER = Logger.getLogger(TextUi.class.getName());
 
     public static ArrayList<GameRecord> readGameRecords(String gameMode) {
-
         ArrayList<String> gameRecordsStringArrayList = readFile(gameMode);
         ArrayList<GameRecord> gameRecords = convertToGameRecords(gameRecordsStringArrayList);
         return gameRecords;
-
     }
 
     public static void writeGameRecords(ArrayList<GameRecord> gameRecords, String gameMode) {
@@ -117,7 +115,6 @@ public class Storage {
         assert ((gameMode.equals("Time-limited")) || (gameMode.equals("Word-limited")));
         String filename = gameMode.toLowerCase(Locale.ROOT) + "_records.txt";
         return filename;
-
     }
 
     public static void setUpLog() {

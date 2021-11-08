@@ -1,69 +1,75 @@
 @startuml
 
-[-> SearchCommand : execute()
-activate SearchCommand
+-> WordGameCommand: run()
+activate WordGameCommand
+WordGameCommand -> WordGameCommand: getNumber(args, WORD_SIGNIFIER)
+activate WordGameCommand
+WordGameCommand --> WordGameCommand: wordLimit
+deactivate
 
-alt Able to connect
-    SearchCommand -> NusMods : searchModsOnline()
-    activate NusMods
-    NusMods -> NusMods : getOnlineModList()
-    activate NusMods
-    NusMods --> NusMods
-    deactivate NusMods
-    loop for each mod
-            alt Module Code Match
-                    NusMods -> NusMods : fetchModOnline()
-                    activate NusMods
-                    NusMods -> NusMods : getOnlineModInfo()
-                    activate NusMods
-                    NusMods --> NusMods
-                    deactivate NusMods
-                    NusMods -> ModStorage : saveModInfo()
-                    activate ModStorage
-                    ModStorage --> NusMods
-                    deactivate ModStorage
-                    NusMods -> ModStorage : loadModInfo()
-                    activate ModStorage
-                    ModStorage --> NusMods
-                    deactivate ModStorage
-                    deactivate NusMods
-                alt All Flags Match
-                    NusMods -> TextUI : PrintModBriefDescription()
-                    activate TextUI
-                    TextUI --> NusMods
-                    deactivate TextUI
-                else
-                end
-            else
-            end
+create WordLimitGame
+WordGameCommand -> WordLimitGame: createGame(args, isReady, setContent)
+activate WordLimitGame
+WordLimitGame -> TextUi: getWordLimit()
+activate TextUi
+TextUi --> WordLimitGame: isValidWord(n)
+deactivate
+WordLimitGame --> WordGameCommand
+deactivate
+
+WordGameCommand -> WordLimitGame: runGame()
+activate WordLimitGame
+WordLimitGame -> WordLimitGame: trimContent(limit)
+activate WordLimitGame
+WordLimitGame --> WordLimitGame
+deactivate
+WordLimitGame -> WordLimitGame: getTimeNow()
+activate WordLimitGame
+WordLimitGame --> WordLimitGame
+deactivate
+
+loop until Exit
+    WordLimitGame -> Utils: displayLines(row)
+    activate Utils
+    Utils --> WordLimitGame: line
+    deactivate
+    WordLimitGame -> TextUi: printLine(displayed)
+    activate TextUi
+    TextUi --> WordLimitGame
+    deactivate
+    WordLimitGame -> TextUi: readCommand()
+            activate TextUi
+            TextUi --> WordLimitGame: inputs
+            deactivate
+    alt Exit
+    else continue typing
+        WordLimitGame -> WordLimitGame: updateUserLines(inputs)
+        activate WordLimitGame
     end
-    NusMods --> SearchCommand
-    deactivate NusMods
-
-else No connection or Quicksearch
-
-    SearchCommand -> ModStorage : searchFiles()
-    activate ModStorage
-    loop for each json
-        alt Module Code Match
-            ModStorage -> ModStorage : loadModInfo()
-            activate ModStorage
-            ModStorage --> ModStorage
-            deactivate ModStorage
-            alt All Flags Match
-                ModStorage -> TextUI : PrintModBriefDescription()
-                activate TextUI
-                TextUI --> ModStorage
-                deactivate TextUI
-            end
-        end
-    end
-    ModStorage --> SearchCommand
-    deactivate ModStorage
-
+    deactivate
 end
 
-<-- SearchCommand
-deactivate SearchCommand
+WordLimitGame --> WordGameCommand
+deactivate
+WordGameCommand -> WordLimitGame: gameSummary()
+activate WordLimitGame
+
+WordLimitGame -> WordLimitGame: getDuration()
+activate WordLimitGame
+WordLimitGame --> WordLimitGame: gameTime
+deactivate
+
+WordLimitGame -> TextUi: handleSummary(...,"Word-Limited")
+activate TextUi
+TextUi --> WordLimitGame: summary
+deactivate
+WordLimitGame -> WordLimitGame: handleStorage(summary)
+activate WordLimitGame
+WordLimitGame --> WordLimitGame
+deactivate
+
+WordLimitGame --> WordGameCommand
+deactivate
+destroy WordLimitGame
 
 @enduml

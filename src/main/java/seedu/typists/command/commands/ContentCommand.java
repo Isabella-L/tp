@@ -1,6 +1,8 @@
 
-package seedu.typists.command;
+package seedu.typists.command.commands;
 
+
+import seedu.typists.command.commands.Command;
 
 import java.util.ArrayList;
 

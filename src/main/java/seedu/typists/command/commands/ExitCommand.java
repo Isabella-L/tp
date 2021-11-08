@@ -1,5 +1,6 @@
-package seedu.typists.command;
+package seedu.typists.command.commands;
 
+import seedu.typists.command.commands.Command;
 import seedu.typists.game.GameRecordsManager;
 
 import java.util.ArrayList;

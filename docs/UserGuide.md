@@ -213,7 +213,7 @@ Mistakes: No words typed wrongly.
 ```
 
 ### 3.4 Clear past records: `clear` 
-Clear all past game records
+Clear all past game records.  
 Format: `clear [-g GAME_MODE] [-h]`
 * GAME_MODE defaults to `all` if not provided
 * Possible arguments for GAME_MODE are - `word`, `time` or `all`
@@ -239,7 +239,7 @@ Successfully cleared Time-limited game records.
 ```
 
 ### 3.5 View summary of game
-View summary of a just-played game.
+View summary of a just-played game.  
 Typists automatically generates and displays the summary after a game ends.   
 The summary consists of the following fields:
 * Game mode
@@ -279,7 +279,16 @@ hence losing all the game data.
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: Copy and paste the save data under the same working directory.
+
+**Q**: The wiki page contains error messages. What should I do?
+
+**A**: Some characters might not be supported by the CLI. You can search for another page as an alternative.
+
+**Q**: Why does the time limit need to be a multiple of 30?
+
+**A**: It's a design choice. You can select the word limit game if you find it too restricting.
+
 
 ## Command Summary
 
@@ -288,6 +297,6 @@ hence losing all the game data.
 |`content`| Set the content
 |`game -word [WORD_LIMIT] [-sn] [-c]` | Start a word-limited game
 |`game -time [TIME_LIMIT] [-sn] [-c]` | Start a time-limited game
-|`history -g GAME_MODE [-n NUMBER_OF_RECORDS] [-h]` | Clear history
-|`clear` | Clear history
+|`history -g GAME_MODE [-n NUMBER_OF_RECORDS] [-h]` | View past game records
+|`clear` | Clear past game records
 |`bye`| Exit the program

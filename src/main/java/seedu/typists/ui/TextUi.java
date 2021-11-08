@@ -24,7 +24,6 @@ import java.util.Scanner;
  */
 public class TextUi {
     private final SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
     private static final String DIVIDER = "===========================================================";
     private static final String LINE_PREFIX = "     | ";
     private static final String LS = lineSeparator();
@@ -115,18 +114,6 @@ public class TextUi {
         int k = 0;
         while (k < 6) {
             animation.animateLeft(string);
-            Thread.sleep(300);
-            k++;
-        }
-        System.out.println("");
-    }
-
-    public void viewAnimateRight(String string) throws InterruptedException {
-        Animation animation = new Animation();
-        animation.resetAnimRight();
-        int k = 0;
-        while (k < 6) {
-            animation.animateRight(string);
             Thread.sleep(300);
             k++;
         }

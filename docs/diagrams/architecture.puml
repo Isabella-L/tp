@@ -1,0 +1,80 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Main
+interface Command
+class ClearCommand
+class ContentCommand
+class ExitCommand
+abstract class GameCommand
+class HistoryCommand
+class TimeGameCommand
+class WordGameCommand
+class CommandFactory
+class Books
+class Utils
+class SummaryUi
+class StringParser
+class Content
+class TimeLimitGame
+class WordLimitGame
+abstract class Game
+class Storage
+class Animation
+class RandomGenerator
+class WikiImport
+class GameRecord
+class GameRecordsManager
+class SummaryManager
+class FileParser
+class ClearCommandUi
+class GameUi
+class HistoryCommandUi
+class TextUi
+
+ClearCommand <.. Command
+ContentCommand <.. Command
+ExitCommand <.. Command
+GameCommand <.. Command
+HistoryCommand <.. Command
+TimeGameCommand <|-- GameCommand
+WordGameCommand <|-- GameCommand
+TimeGameCommand <|-- Game
+WordLimitGame <|-- Game
+GameUi <|-- TextUi
+SummaryUi <|-- TextUi
+Storage *- Main
+Content *-- Main
+TextUi *-- Main
+CommandFactory *-- Main
+Command *- Main
+Animation *-- TextUi
+Content *-- Animation
+GameUi *-- Game
+SummaryUi *-- Game
+SummaryManager *-- Game
+GameRecordsManager *-- Game
+Game *-- GameCommand
+GameUi *-- GameCommand
+GameRecordsManager *-- ClearCommand
+ClearCommandUi *-- ClearCommand
+GameRecordsManager *-- ExitCommand
+GameRecordsManager *-- HistoryCommand
+HistoryCommandUi *-- HistoryCommand
+TimeLimitGame *-- TimeGameCommand
+WordLimitGame *-- WordGameCommand
+TextUi *- CommandFactory
+TextUi *-- Utils
+TextUi *--- Content
+WikiImport *-- Content
+RandomGenerator *-- Content
+Books *-- Content
+Storage *-- GameRecordsManager
+GameRecord *-- GameRecordsManager
+TextUi *--- TimeLimitGame
+TextUi *-- WordLimitGame
+GameRecord *-- FileParser
+GameRecord *-- Storage
+StringParser *-- WordLimitGame
+
+@enduml

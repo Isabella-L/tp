@@ -1,5 +1,5 @@
 @startuml
-!include Style.puml
+!include style.puml
 
 participant ":GameCommand" as command
 participant "game:TimeModeGame" as game

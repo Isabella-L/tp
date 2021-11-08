@@ -1,5 +1,13 @@
 package seedu.typists.command;
 
+import seedu.typists.command.commands.Command;
+import seedu.typists.command.commands.ContentCommand;
+import seedu.typists.command.commands.HistoryCommand;
+import seedu.typists.command.commands.ClearCommand;
+import seedu.typists.command.commands.ExitCommand;
+import seedu.typists.command.commands.GameCommand;
+import seedu.typists.command.commands.TimeGameCommand;
+import seedu.typists.command.commands.WordGameCommand;
 import seedu.typists.ui.TextUi;
 
 import java.util.ArrayList;

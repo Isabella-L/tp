@@ -1,7 +1,7 @@
 package seedu.typists;
 
 import seedu.typists.content.Content;
-import seedu.typists.command.Command;
+import seedu.typists.command.commands.Command;
 import seedu.typists.command.CommandFactory;
 import seedu.typists.ui.SummaryUi;
 import seedu.typists.ui.TextUi;
